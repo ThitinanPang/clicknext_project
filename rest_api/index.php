@@ -1,5 +1,5 @@
 <?php
-     require_once("REST-API\dbconfig.php");
+     require_once("dbconfig.php");
      $db = new Database('localhost', 'persons', 'root', '');
      if ($_SERVER['REQUEST_METHOD'] == "GET") {
         echo json_encode($db->query('SELECT * FROM persons_info'));
