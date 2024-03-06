@@ -1,1 +1,0 @@
-# clicknext_project
