@@ -51,11 +51,16 @@
         }
         .workspace-name{
             display: flex;
+            font-size: 16px;
+            font-weight: 400;
         }
         .profile{
             display: flex;
             align-items: center;
+            font-size: 16px;
+            font-weight: 400;
         }
+
         .dropdown{
             display: flex;
             align-items: baseline;
@@ -93,62 +98,105 @@
         }
 
 
-        .textfield {
+        .search {
             width: auto;
             height: 35px;
             border: 1px solid #F2F2F2;
             border-radius: 5px;
             font-size: 16px;
             padding: 8px;
-            margin-right: 5px;
         }
-        .btn-regular {
-            height: 35px;
+
+        .textfield {
             width: auto;
-            background-color: #F2F2F2;
+            height: 30px;
+            border: 1px solid #F2F2F2;
             border-radius: 5px;
-            color: black;
             font-size: 16px;
+            padding: 8px;
         }
         .workspace-body {
             margin-top: 10px;
-            color: #808080;
-            font-weight: 600;
-
         }
+
         .workspace-body .workspace-name{
             color: #000;
             margin: 15px 0 0 20px;
             font-weight: 400;
         }
-        .btn-none-border {
+        .btn-link {
             background-color: transparent;
             border: none;
             color: #808080;
             font-size: 14px;
             font-weight: 400;
+            text-decoration: none;
+        }
+        .btn-link:hover{
+            color: #EF5B25;
         }
         .workspace-footer {
             border-top: 1px solid #f2f2f2;
             align-items: center;
             padding-top: 5px;
         }
+
+        .label-header {
+            font-size: 20px;
+            font-weight: 600;
+
+        }
+        .label-description {
+            font-size: 12px;
+            font-weight: 500;
+            color: #808080;
+        }
+        .btn-primary {
+            background-color: #EF5B25;
+            border: none;
+            border-radius: 5px;
+            margin-left: 5px;
+        }
+        .btn-primary:hover {
+            background-color: #cc5022;
+            border: none;
+        }
+        .btn-secondary {
+            height: 35px;
+            width: auto;
+            background-color: #F2F2F2;
+            border-radius: 5px;
+            color: black;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+        }
+        .btn-secondary:hover {
+            background-color: #dcdcdc;
+            color: #000;
+        }
+
         #workspace-create-pane {
-            display: block;
+            width: 300px;
+            display: none;
             position: absolute;
             background-color: #fff;
             padding: 10px;
-            margin: 2px 0 0 390px;
+            margin: 2px 0 0 405px;
             z-index: 1;
             box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.1);
             border-radius: 5px;
         }
-        .label-header {
-            font-size: 18px;
-            font-weight: 600;
-
+        #workspace-create-pane .textfield {
+            width: 280px;
         }
 
+        #workspace-create-pane .container{
+            display: flex;
+            margin-top: 10px;
+            justify-content: flex-end;
+            align-items: center;
+        }
     </style>
 </head>
 <body>
@@ -185,16 +233,16 @@
         <!--Workspace Container-->
         <div id="workspace-container">
             <div class="workspace-header">
-                <input style="font-family: Arial, FontAwesome;" type="search" name="searh-workspace" id="search-workspace" class="textfield" placeholder="&#xf002; Search workspaces">
-                <button class="btn btn-regular" type="button" id="create-workspace-switch" onclick="toggleCreateWorkspace">Create Workspace</button>
+                <input style="font-family: Arial, FontAwesome;" type="search" name="searh-workspace" id="search-workspace" class="search" placeholder="&#xf002; Search workspaces">
+                <button class="btn btn-secondary" type="button" id="create-workspace-switch" onclick="toggleCreateWorkspace">Create Workspace</button>
             </div>
             <div class="workspace-body">
-                <label for="">Recently visited</label>
+                <label for="" class="label-description">Recently visited</label>
                 <table>
                     <tr>
                         <div class="workspace-name">
                             <i class="fa-regular fa-user" style="margin-right: 10px;"></i>
-                            <label for="">My workspace</label>
+                            <label for="">My Workspace</label>
                         </div>
                     </tr>
                     <tr>
@@ -206,7 +254,7 @@
                 </table>
             </div>
             <div class="workspace-footer">
-                <button class="btn-none-border">
+                <button class="btn-link">
                     View all workspaces
                     <i class="fa-solid fa-arrow-right" style="font-size: 10px;"></i>
                 </button>
@@ -219,7 +267,7 @@
             <br>
             <input class="textfield" type="text" name="workspace-input-name" id="workspace-input-name">
             <div class="container">
-                <button class="btn btn-regular">Cancel</button>
+                <button class="btn btn-secondary">Cancel</button>
                 <button class="btn btn-primary">Create</button>
             </div>
         </div>
@@ -229,13 +277,13 @@
             <div class="main-content">
 
                 <div class="content">
-                    <h2>Recently visited workspaces</h2>
+                    <h1>Recently visited workspaces</h1>
                     <table>
                         <tr>
                             <td class="td-80">
                                 <div class="workspace-name">
                                     <i class="fa-regular fa-user" style="margin-right: 10px;"></i>
-                                    <label for="">My workspace</label>
+                                    <label for="">My Workspace</label>
                                 </div>
                             </td>
                             <td class="td-20">
@@ -278,15 +326,12 @@
             }
         }
         function toggleCreateWorkspace() {
-            var workspaceContainer = document.getElementById("workspace-container");
-            var workspaceArrowIcon = document.getElementById("workspace-arrow");
+            var workspaceCreatepane = document.getElementById("workspace-create-pane");
             // Toggle the display property
-            if (workspaceContainer.style.display === "none") {
-                workspaceContainer.style.display = "block";
-                workspaceArrowIcon.className = "fa-solid fa-angle-up";
+            if (workspaceCreatepane.style.display === "none") {
+                workspaceCreatepane.style.display = "block";
             } else {
-                workspaceContainer.style.display = "none";
-                workspaceArrowIcon.className = "fa-solid fa-angle-down";
+                workspaceCreatepane.style.display = "none";
             }
         }
     </script>
