@@ -10,20 +10,20 @@
         .sidebar {
             position: fixed;
             left: 0;
-            width: 90px; /* กว้างของ sidebar */
-            height: 100%; /* ความสูงของ sidebar */
-            background-color: #EF5B25; /* สีพื้นหลังของ sidebar */
-            border-right: 1px solid #dee2e6; /* เส้นขอบด้านขวาของ sidebar */
+            width: 90px;
+            height: 100%;
+            background-color: #EF5B25;
+            border-right: 1px solid #dee2e6;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
         .main {
-            padding-left: 90px; /* ขอบซ้ายของเนื้อหาหลัก */
+            padding-left: 90px;
         }
 
         .main-content {
-            padding: 20px; /* ระยะห่างของเนื้อหาหลัก */
+            padding: 20px;
         }
         .navbar{
             height: 70px;
@@ -44,8 +44,8 @@
             font-weight: 500;
         }
         .table-icon {
-            width: 36px; /* กำหนดความกว้างของไอคอน */
-            height: 36px; /* กำหนดความสูงของไอคอน */
+            width: 36px;
+            height: 36px;
             border-radius: 50%;
             margin-right: 10px;
         }
@@ -132,9 +132,7 @@
             font-weight: 400;
             text-decoration: none;
         }
-        .btn-link:hover{
-            color: #EF5B25;
-        }
+
         .workspace-footer {
             border-top: 1px solid #f2f2f2;
             align-items: center;
@@ -161,6 +159,10 @@
             background-color: #cc5022;
             border: none;
         }
+        .btn-primary:focus {
+            background-color: #cc5022;
+            border: none;
+        }
         .btn-secondary {
             height: 35px;
             width: auto;
@@ -172,6 +174,10 @@
             border-radius: 5px;
         }
         .btn-secondary:hover {
+            background-color: #dcdcdc;
+            color: #000;
+        }
+        .btn-secondary:focus {
             background-color: #dcdcdc;
             color: #000;
         }
@@ -234,23 +240,21 @@
         <div id="workspace-container">
             <div class="workspace-header">
                 <input style="font-family: Arial, FontAwesome;" type="search" name="searh-workspace" id="search-workspace" class="search" placeholder="&#xf002; Search workspaces">
-                <button class="btn btn-secondary" type="button" id="create-workspace-switch" onclick="toggleCreateWorkspace">Create Workspace</button>
+                <button class="btn btn-secondary" type="button" id="create-workspace-switch" onclick="btnCreateWorkspace('open')">Create Workspace</button>
             </div>
             <div class="workspace-body">
                 <label for="" class="label-description">Recently visited</label>
                 <table>
+
+                    @foreach ($workspaces as $workspace)
                     <tr>
                         <div class="workspace-name">
                             <i class="fa-regular fa-user" style="margin-right: 10px;"></i>
-                            <label for="">My Workspace</label>
+                            <label for="">{{$workspace->name}}</label>
                         </div>
                     </tr>
-                    <tr>
-                        <div class="workspace-name">
-                            <i class="fa-regular fa-user" style="margin-right: 10px;"></i>
-                            <label for="">Test</label>
-                        </div>
-                    </tr>
+                    @endforeach
+
                 </table>
             </div>
             <div class="workspace-footer">
@@ -261,17 +265,25 @@
             </div>
         </div>
         <div id="workspace-create-pane">
-            <label for="workspace-input-name" class="label-header">Create your workspace</label>
-            <br>
-            <label for="workspace-input-name" class="label-description">Name</label>
-            <br>
-            <input class="textfield" type="text" name="workspace-input-name" id="workspace-input-name">
-            <div class="container">
-                <button class="btn btn-secondary">Cancel</button>
-                <button class="btn btn-primary">Create</button>
-            </div>
+            <form action="{{ route('home.store') }}" method="POST" enctype="multipart/form-data" id="form-create-workspace">
+                @csrf
+                <label for="workspace-input-name" class="label-header">Create your workspace</label>
+                <br>
+                <label for="workspace-input-name" class="label-description">Name</label>
+                <br>
+                <input class="textfield" type="text" name="workspace-input-name" id="workspace-input-name">
+                <div class="container">
+                    <button type="button" class="btn btn-secondary" onclick="btnCreateWorkspace()">Cancel</button>
+                    <button type="submit" class="btn btn-primary" form="form-create-workspace">Create</button>
+                </div>
+            </form>
         </div>
-
+        @if ($message = Session::get('success'))
+            <div class="alert alert-success">{{$message}}</div>
+        @endif
+        @error('workspace-input-name')
+            <div class="alert alert-danger">{{$message}}</div>
+        @enderror
         <section>
             <!-- Section Start-->
             <div class="main-content">
@@ -279,34 +291,24 @@
                 <div class="content">
                     <h1>Recently visited workspaces</h1>
                     <table>
+
+                        @foreach ($workspaces as $workspace)
                         <tr>
                             <td class="td-80">
                                 <div class="workspace-name">
                                     <i class="fa-regular fa-user" style="margin-right: 10px;"></i>
-                                    <label for="">My Workspace</label>
+                                    <label for="">{{$workspace->name}}</label>
                                 </div>
                             </td>
                             <td class="td-20">
                                 <div class="profile">
                                     <img src="https://media.discordapp.net/attachments/994685233087643719/1215271120127791114/77ed449a829d201a7940b0f98d49ca5a3cf43dd9.jpg?ex=65fc246d&is=65e9af6d&hm=cc53b20e7bac20faa1f57f479c85b3a5c19f166a5ece6b0da943736fc79cb017&=&format=webp" alt="" class="table-icon" >
-                                    <label for="">Sweed</label>
+                                    <label for="">{{$workspace->user_create}}</label>
                                 </div>
                             </td>
                         </tr>
-                        <tr>
-                            <td class="td-80">
-                                <div class="workspace-name">
-                                    <i class="fa-regular fa-user" style="margin-right: 10px;"></i>
-                                    <label for="">Test</label>
-                                </div>
-                            </td>
-                            <td class="td-20">
-                                <div class="profile">
-                                    <img src="https://media.discordapp.net/attachments/994685233087643719/1215271120127791114/77ed449a829d201a7940b0f98d49ca5a3cf43dd9.jpg?ex=65fc246d&is=65e9af6d&hm=cc53b20e7bac20faa1f57f479c85b3a5c19f166a5ece6b0da943736fc79cb017&=&format=webp" alt="" class="table-icon" >
-                                    <label for="">Pangkung</label>
-                                </div>
-                            </td>
-                        </tr>
+                        @endforeach
+
                     </table>
                 </div>
             </div>
@@ -316,19 +318,22 @@
          function toggleWorkspace() {
             var workspaceContainer = document.getElementById("workspace-container");
             var workspaceArrowIcon = document.getElementById("workspace-arrow");
+            var workspaceCreatepane = document.getElementById("workspace-create-pane");
             // Toggle the display property
             if (workspaceContainer.style.display === "none") {
                 workspaceContainer.style.display = "block";
                 workspaceArrowIcon.className = "fa-solid fa-angle-up";
             } else {
                 workspaceContainer.style.display = "none";
+                workspaceCreatepane.style.display = "none";
                 workspaceArrowIcon.className = "fa-solid fa-angle-down";
             }
         }
-        function toggleCreateWorkspace() {
+        function btnCreateWorkspace(action) {
             var workspaceCreatepane = document.getElementById("workspace-create-pane");
-            // Toggle the display property
-            if (workspaceCreatepane.style.display === "none") {
+            var formCreateWorkspace = document.getElementById("form-create-workspace");
+            formCreateWorkspace.reset();
+            if (action === "open") {
                 workspaceCreatepane.style.display = "block";
             } else {
                 workspaceCreatepane.style.display = "none";

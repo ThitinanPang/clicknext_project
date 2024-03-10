@@ -4,8 +4,9 @@ use App\Http\Controllers\HomepageController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WorkspaceController;
 
-Route::resource('workspaces',WorkspaceController::class);
+Route::resource('workspace',WorkspaceController::class);
 Route::resource('home',HomepageController::class);
+
 
 
 
@@ -20,6 +21,3 @@ Route::resource('home',HomepageController::class);
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
