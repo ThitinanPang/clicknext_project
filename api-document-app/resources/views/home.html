@@ -39,8 +39,16 @@
             justify-content: center;
             border-radius: 5px;
             font-size: 14px;
+            transition: all 0.3s;
         }
         .btn-menu:hover{
+            background-color: #ea9c80;
+            width: 70px;
+            height: 70px;
+            color: #fff;
+            transition: all 0.3s;
+        }
+        .btn-menu:focus{
             background-color: #ea9c80;
             width: 70px;
             height: 70px;
@@ -52,22 +60,55 @@
             display: inline-block;
         }
         .dropdown-content {
-            display: block;
+            display: none;
             position: absolute;
             background-color: #f9f9f9;
             box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
             z-index: 1;
         }
-        .dropdown:focus .dropdown-content {
+        .create-workspace {
             display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+        .dropdown-nav-toggle:checked ~ .dropdown-content{
+            display: flex;
         }
 
+        .dropdown-menu {
+            border: #000 solid 0px;
+        }
+        .dropdown-item {
+            background: #fff;
+            color:#000;
+            transition: all 0.3s;
+        }
+        .dropdown-item:hover {
+            background: #f2f2f2;
+            color:dodgerblue;
+            transition: all 0.3s;
+        }
         .navbar {
             border-bottom: #F2F2F2 solid 1px;
         }
 
-        .top-line {
+        .custom-table {
             border-top: #F2F2F2 solid 1px;
+            background-color: white;
+            transition: all 0.3s;
+        }
+        .custom-table:hover {
+            background-color: #f2f2f2;
+            transition: all 0.3s;
+        }
+        td {
+            background-color: transparent;
+            color: #000;
+        }
+        td:hover {
+            color: dodgerblue;
         }
 
         i.fa {
@@ -82,7 +123,7 @@
             position: relative;
             padding-left: 30px !important;
         }
-        .pain {
+        .pane {
             background-color: white;
             border-radius: 5px;
             box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.1);
@@ -90,44 +131,77 @@
         .textfield {
             width: auto;
             height: 30px;
-            border: 1px solid #F2F2F2;
+            border: 2px solid #F2F2F2;
             border-radius: 5px;
             font-size: 16px;
             padding: 1px;
         }
-        .btn-secondary {
-            background: #f2f2f2;
-            color: #000;
-            font-weight: 500;
-            border: #f2f2f2 solid 1px;
-        }
-        .btn-secondary:hover {
-            background: #eeeeee;
-            color: #000;
-            font-weight: 500;
-            border: #f2f2f2 solid 1px;
-        }
         .btn {
             height: 100%;
             width: 100%;
+            background: #fff;
+            color: #000;
+            font-weight: 500;
+        }
+        .btn:hover {
             background: #f2f2f2;
             color: #000;
             font-weight: 500;
-            border: #f2f2f2 solid 1px;
-        }
-        .btn:hover {
-            background: #eeeeee;
-            color: #000;
-            font-weight: 500;
-            border: #f2f2f2 solid 1px;
         }
         .btn:focus {
             background: #f2f2f2;
             color: #000;
             font-weight: 500;
-            border: #f2f2f2 solid 1px;
         }
-        .link {
+        .btn-secondary {
+            background: #f2f2f2;
+            color: #000;
+            font-weight: 500;
+            border: #f2f2f2 solid 0px;
+        }
+        .btn-secondary:hover {
+            background: #eeeeee;
+            color: #000;
+            font-weight: 500;
+            border: #f2f2f2 solid 0px;
+        }
+        .btn-secondary:focus {
+            background: #eeeeee;
+            color: #000;
+            font-weight: 500;
+            border: #f2f2f2 solid 0px;
+        }
+        .btn-primary {
+            background: #EF5B25;
+            color: #fff;
+            font-weight: 500;
+            border: #EF5B25 solid 0px;
+        }
+        .btn-primary:hover {
+            background: #d75120;
+            color: #fff;
+            font-weight: 500;
+            border: #ef5b25 solid 0px;
+        }
+        .btn-primary:focus {
+            background: #d75120;
+            color: #fff;
+            font-weight: 500;
+            border: #EF5B25 solid 0px;
+        }
+        .link-black {
+            color: #000000;
+            transition: all 0.3s;
+            text-decoration: none;
+            height: 35px;
+            display: flex;
+            align-items: center;
+        }
+        .link-black:hover {
+            color: dodgerblue;
+            transition: all 0.3s;
+        }
+        .link-grey {
             color: #808080;
             transition: all 0.3s;
             text-decoration: none;
@@ -135,9 +209,8 @@
             display: flex;
             align-items: center;
         }
-        .link:hover {
+        .link-grey:hover {
             color: dodgerblue;
-            transition: all 0.3s;
         }
     </style>
 </head>
@@ -170,12 +243,14 @@
         <!-- Start Navbar -->
         <nav class="ps-2 d-flex navbar navbar-light bg-white">
             <div class="dropdown">
-                <button class="btn dropdown d-flex align-items-center nav-link">
+                <input type="checkbox" id="dropdown-nav-toggle" class="dropdown-nav-toggle visually-hidden">
+                <button class="btn btn-white dropdown d-flex align-items-center" style="height: 50px;" onclick="toggleDropdownNav(),toggleCreateWorkspacePane('close')">
                     <span class="material-symbols-outlined">grid_view</span>
                     <span class="fs-5 fw-normal">Workspaces</span>
-                    <span class="material-icons">expand_more</span>
+                    <span id="dropdown-nav-icon" class="material-icons">expand_more</span>
                 </button>
-                <div class="dropdown-content d-flex flex-column container pain" style=" width: 420px; height: 210px;">
+                <!-- Dropdown Menu -->
+                <div class="dropdown-content flex-column container pane" style=" width: 420px; height: 210px;">
                     <div class="row align-items-start p-2">
                         <div class="col-7 d-flex align-items-center p-1" style="height: 40px;">
                             <div class="input-group">
@@ -184,7 +259,7 @@
                             </div>
                         </div>
                         <div class="col-5 d-flex align-items-center p-1" style="height: 40px;">
-                            <button class="m-auto rounded-1 w-100 btn btn-secondary pt-1">Create Workspace</button>
+                            <button class="m-auto rounded-1 w-100 btn btn-secondary pt-1" onclick="toggleCreateWorkspacePane('open')">Create Workspace</button>
                         </div>
                     </div>
                     <div class="row">
@@ -205,62 +280,154 @@
                         </div>
                     </div>
                     <div class="row align-items-end mt-auto" style="border-top: #F2F2F2 solid 2px;">
-                        <a href="" class="link">View all workspaces <i style="font-size: 12px;" class="fa-solid fa-arrow-right"></i></a>
+                        <a href="" class="link-grey">View all workspaces <i style="font-size: 12px;" class="fa-solid fa-arrow-right"></i></a>
                     </div>
                 </div>
+                <!-- Create Workspace Pane -->
+                <form class="create-workspace flex-column justify-content-start pane p-3" id="form-create-workspace" style="width: 300px; margin-left: 425px;">
+                    <label for="" style="font-size: 20px; font-weight: 500;">Create your workspace</label>
+                    <label class="mt-1" style="color: #808080; font-size: 14px; font-weight: 400;">Name</label>
+                    <input type="text" class="textfield p-1" name="" id="">
+                    <div class="d-flex flex-row mt-2 align-self-end" style="width: 140px;" >
+                        <div class="col py-1">
+                            <button class="btn btn-secondary" type="button" onclick="toggleCreateWorkspacePane('close')">Cancel</button>
+                        </div>
+                        <div class="col py-1 ps-1">
+                            <button class="btn btn-primary" type="button">Create</button>
+                        </div>
+                    </div>
+                </form>
             </div>
-
-            <a href="#" class="dropdown d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle pe-5 fs-5 fw-normal" data-bs-toggle="dropdown" aria-expanded="false">
-                <img src="https://media.discordapp.net/attachments/994685233087643719/1215271120127791114/77ed449a829d201a7940b0f98d49ca5a3cf43dd9.jpg?ex=65fc246d&is=65e9af6d&hm=cc53b20e7bac20faa1f57f479c85b3a5c19f166a5ece6b0da943736fc79cb017&=&format=webp" alt="" width="50" height="50" class="rounded-circle me-2">
-                Sweed
-            </a>
+            <div class="dropdown pe-5 fs-5">
+                <button class="btn btn-white dropdown d-flex align-items-center" onclick="toggleDropdownProfile()" style="height: 50px;" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="https://media.discordapp.net/attachments/994685233087643719/1215271120127791114/77ed449a829d201a7940b0f98d49ca5a3cf43dd9.jpg?ex=65fc246d&is=65e9af6d&hm=cc53b20e7bac20faa1f57f479c85b3a5c19f166a5ece6b0da943736fc79cb017&=&format=webp" alt="" width="40" height="40" class="rounded-circle me-2">
+                    <span class="fs-5 fw-normal">Sweed</span>
+                    <span id="dropdown-profile-icon" class="material-icons">expand_more</span>
+                </button>
+                <ul class="dropdown-menu pane" aria-labelledby="dropdownMenuButton1">
+                  <li><a class="dropdown-item" href="#">View Profile</a></li>
+                  <li><a class="dropdown-item" href="#">Sign Out</a></li>
+                </ul>
+            </div>
         </nav>
         <!-- Start Content -->
         <section class="content">
-            <div class="ps-4 mt-4 container-fluid">
+            <div class="ps-4 mt-4 container-fluid" style="height: 300px;">
                 <h2>Recently visited workspaces</h2>
                 <table class="table table-borderless">
                     <tbody>
-                        <tr class="top-line">
+                        <tr class="custom-table">
                             <td style="width: 80%;">
-                                <div class="d-flex align-items-center mt-1">
+                                <a class="d-flex align-items-center mt-1 link-black" style="text-decoration: none;">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="me-2" viewBox="0 0 16 16" width="18" height="18"><path d="M10.561 8.073a6.005 6.005 0 0 1 3.432 5.142.75.75 0 1 1-1.498.07 4.5 4.5 0 0 0-8.99 0 .75.75 0 0 1-1.498-.07 6.004 6.004 0 0 1 3.431-5.142 3.999 3.999 0 1 1 5.123 0ZM10.5 5a2.5 2.5 0 1 0-5 0 2.5 2.5 0 0 0 5 0Z"></path></svg>
                                     <label label class="fs-6 fw-normal" for="">My workspace</label>
-                                </div>
+                                </a>
                             </td>
                             <td style="width: 20%;">
-                                <div class="d-flex align-items-center">
+                                <a class="d-flex align-items-center link-black">
                                     <img src="https://media.discordapp.net/attachments/994685233087643719/1215271120127791114/77ed449a829d201a7940b0f98d49ca5a3cf43dd9.jpg?ex=65fc246d&is=65e9af6d&hm=cc53b20e7bac20faa1f57f479c85b3a5c19f166a5ece6b0da943736fc79cb017&=&format=webp" alt="" width="32" height="32" class="rounded-circle me-2">
-                                    <label class="fs-6 fw-normal" for="">Sweed</label>
-                                  </div>
+                                    <label class="fs-6 fw-normal mt-1 ms-2" for="">Sweed</label>
+                                  </a>
                             </td>
                         </tr>
-                        <tr class="top-line">
+                        <tr class="custom-table">
                             <td style="width: 80%;">
-                                <div class="d-flex align-items-center mt-1">
+                                <a class="d-flex align-items-center mt-1 link-black" style="text-decoration: none;">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="me-2" viewBox="0 0 16 16" width="18" height="18"><path d="M10.561 8.073a6.005 6.005 0 0 1 3.432 5.142.75.75 0 1 1-1.498.07 4.5 4.5 0 0 0-8.99 0 .75.75 0 0 1-1.498-.07 6.004 6.004 0 0 1 3.431-5.142 3.999 3.999 0 1 1 5.123 0ZM10.5 5a2.5 2.5 0 1 0-5 0 2.5 2.5 0 0 0 5 0Z"></path></svg>
-                                    <label label class="fs-6 fw-normal" for="">Test</label>
-                                </div>
+                                    <label label class="fs-6 fw-normal" for="">My workspace</label>
+                                </a>
                             </td>
                             <td style="width: 20%;">
-                                <div class="d-flex align-items-center">
+                                <a class="d-flex align-items-center link-black">
                                     <img src="https://media.discordapp.net/attachments/994685233087643719/1215271120127791114/77ed449a829d201a7940b0f98d49ca5a3cf43dd9.jpg?ex=65fc246d&is=65e9af6d&hm=cc53b20e7bac20faa1f57f479c85b3a5c19f166a5ece6b0da943736fc79cb017&=&format=webp" alt="" width="32" height="32" class="rounded-circle me-2">
-                                    <label class="fs-6 fw-normal" for="">Pangkung</label>
-                                  </div>
+                                    <label class="fs-6 fw-normal mt-1 ms-2" for="">Sweed</label>
+                                  </a>
                             </td>
                         </tr>
+                        <tr class="custom-table">
+                            <td style="width: 80%;">
+                                <a class="d-flex align-items-center mt-1 link-black" style="text-decoration: none;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="me-2" viewBox="0 0 16 16" width="18" height="18"><path d="M10.561 8.073a6.005 6.005 0 0 1 3.432 5.142.75.75 0 1 1-1.498.07 4.5 4.5 0 0 0-8.99 0 .75.75 0 0 1-1.498-.07 6.004 6.004 0 0 1 3.431-5.142 3.999 3.999 0 1 1 5.123 0ZM10.5 5a2.5 2.5 0 1 0-5 0 2.5 2.5 0 0 0 5 0Z"></path></svg>
+                                    <label label class="fs-6 fw-normal" for="">My workspace</label>
+                                </a>
+                            </td>
+                            <td style="width: 20%;">
+                                <a class="d-flex align-items-center link-black">
+                                    <img src="https://media.discordapp.net/attachments/994685233087643719/1215271120127791114/77ed449a829d201a7940b0f98d49ca5a3cf43dd9.jpg?ex=65fc246d&is=65e9af6d&hm=cc53b20e7bac20faa1f57f479c85b3a5c19f166a5ece6b0da943736fc79cb017&=&format=webp" alt="" width="32" height="32" class="rounded-circle me-2">
+                                    <label class="fs-6 fw-normal mt-1 ms-2" for="">Sweed</label>
+                                  </a>
+                            </td>
+                        </tr>
+                        <tr class="custom-table">
+                            <td style="width: 80%;">
+                                <a class="d-flex align-items-center mt-1 link-black" style="text-decoration: none;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="me-2" viewBox="0 0 16 16" width="18" height="18"><path d="M10.561 8.073a6.005 6.005 0 0 1 3.432 5.142.75.75 0 1 1-1.498.07 4.5 4.5 0 0 0-8.99 0 .75.75 0 0 1-1.498-.07 6.004 6.004 0 0 1 3.431-5.142 3.999 3.999 0 1 1 5.123 0ZM10.5 5a2.5 2.5 0 1 0-5 0 2.5 2.5 0 0 0 5 0Z"></path></svg>
+                                    <label label class="fs-6 fw-normal" for="">My workspace</label>
+                                </a>
+                            </td>
+                            <td style="width: 20%;">
+                                <a class="d-flex align-items-center link-black">
+                                    <img src="https://media.discordapp.net/attachments/994685233087643719/1215271120127791114/77ed449a829d201a7940b0f98d49ca5a3cf43dd9.jpg?ex=65fc246d&is=65e9af6d&hm=cc53b20e7bac20faa1f57f479c85b3a5c19f166a5ece6b0da943736fc79cb017&=&format=webp" alt="" width="32" height="32" class="rounded-circle me-2">
+                                    <label class="fs-6 fw-normal mt-1 ms-2" for="">Sweed</label>
+                                  </a>
+                            </td>
+                        </tr>
+                        <tr class="custom-table">
+                            <td style="width: 80%;">
+                                <a class="d-flex align-items-center mt-1 link-black" style="text-decoration: none;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="me-2" viewBox="0 0 16 16" width="18" height="18"><path d="M10.561 8.073a6.005 6.005 0 0 1 3.432 5.142.75.75 0 1 1-1.498.07 4.5 4.5 0 0 0-8.99 0 .75.75 0 0 1-1.498-.07 6.004 6.004 0 0 1 3.431-5.142 3.999 3.999 0 1 1 5.123 0ZM10.5 5a2.5 2.5 0 1 0-5 0 2.5 2.5 0 0 0 5 0Z"></path></svg>
+                                    <label label class="fs-6 fw-normal" for="">My workspace</label>
+                                </a>
+                            </td>
+                            <td style="width: 20%;">
+                                <a class="d-flex align-items-center link-black">
+                                    <img src="https://media.discordapp.net/attachments/994685233087643719/1215271120127791114/77ed449a829d201a7940b0f98d49ca5a3cf43dd9.jpg?ex=65fc246d&is=65e9af6d&hm=cc53b20e7bac20faa1f57f479c85b3a5c19f166a5ece6b0da943736fc79cb017&=&format=webp" alt="" width="32" height="32" class="rounded-circle me-2">
+                                    <label class="fs-6 fw-normal mt-1 ms-2" for="">Sweed</label>
+                                  </a>
+                            </td>
+                        </tr>
+
                     </tbody>
 
                 </table>
             </div>
-            <div class="ps-4 mt-2 container-fluid">
+            <div class="ps-4 mt-5 container-fluid" style="height: 300px;">
                 <h2>Favorites workspaces</h2>
-
             </div>
         </section>
         <!-- End Content -->
     </div>
     <!-- End Main -->
+    <script>
+        function toggleDropdownNav() {
+            var checkbox = document.getElementById('dropdown-nav-toggle');
+            var icon = document.getElementById('dropdown-nav-icon');
+            if (checkbox.checked) {
+                icon.innerHTML = 'expand_more';
+            } else {
+                icon.innerHTML = 'expand_less';
+            }
+            checkbox.checked = !checkbox.checked;
+        }
+        function toggleCreateWorkspacePane(action) {
+            var formCreateWorkspace = document.getElementById("form-create-workspace");
+            formCreateWorkspace.reset();
+            if (action === "open") {
+                formCreateWorkspace.style.display = "flex";
+            } else {
+                formCreateWorkspace.style.display = "none";
+            }
+        }
+        function toggleDropdownProfile() {
+            var icon = document.getElementById('dropdown-profile-icon');
+            var dropdownMenu = document.getElementById('dropdownMenuButton1');
+            if (dropdownMenu.getAttribute('aria-expanded') === 'false') {
+                icon.innerText = 'expand_less';
+            } else {
+                icon.innerText = 'expand_more';
+            }
+        }
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 </html>
