@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" integrity="sha384-4LISF5TTJX/fLmGSxO53rV4miRxdg84mZsxmO8Rx5jGtp/LbrixFETvWa5a6sESd" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <title>Document</title>
+    <title>Home</title>
     <style>
         *{
             font-family: "Roboto", sans-serif;
@@ -119,6 +119,14 @@
             font-size: 16px;
             z-index: 9999;
         }
+        .icon {
+            position: absolute;
+            top: 6px;
+            left: 10px;
+            color: #808080;
+            font-size: 16px;
+            z-index: 9999;
+        }
         .form-control {
             position: relative;
             padding-left: 30px !important;
@@ -135,6 +143,11 @@
             border-radius: 5px;
             font-size: 16px;
             padding: 1px;
+        }
+        .textfield:focus {
+            outline: 0;
+            border:dodgerblue solid 2px;
+            transition: all 0.3s;
         }
         .btn {
             height: 100%;
@@ -201,6 +214,19 @@
             color: dodgerblue;
             transition: all 0.2s;
             cursor: pointer;
+        }
+        .link-primary {
+            color: #EF5B25;
+            transition: all 0.2s;
+            text-decoration: none;
+            height: 35px;
+            display: flex;
+            align-items: center;
+        }
+        .link-primary:hover {
+            color: dodgerblue;
+            transition: all 0.2s;
+            cursor: pointer;
 
         }
         .link-grey {
@@ -216,6 +242,42 @@
             transition: all 0.2s;
             cursor: pointer;
         }
+        .line {
+            width: 100%;
+            height: 1px;
+            background-color: #808080;
+            margin: 0 0px;
+        }
+        .cursor {
+            cursor: pointer;
+        }
+        .checkbox {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .checkbox__input {
+            position: absolute;
+            top: -100px;
+            left: -100px;
+        }
+
+        .checkbox__inner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 2px solid #eeeeee;
+            background: transparent no-repeat center;
+        }
+
+        .checkbox__input:checked + .checkbox__inner {
+            border-color: #EF5B25;
+            background-color: #EF5B25;
+            background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg width='14px' height='10px' viewBox='0 0 14 10' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'%3E%3C!-- Generator: Sketch 59.1 (86144) - https://sketch.com --%3E%3Ctitle%3Echeck%3C/title%3E%3Cdesc%3ECreated with Sketch.%3C/desc%3E%3Cg id='Page-1' stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Cg id='ios_modification' transform='translate(-27.000000, -191.000000)' fill='%23FFFFFF' fill-rule='nonzero'%3E%3Cg id='Group-Copy' transform='translate(0.000000, 164.000000)'%3E%3Cg id='ic-check-18px' transform='translate(25.000000, 23.000000)'%3E%3Cpolygon id='check' points='6.61 11.89 3.5 8.78 2.44 9.84 6.61 14 15.56 5.05 14.5 4'%3E%3C/polygon%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            background-size: 14px 10px;
+        }
+
     </style>
 </head>
 <body class="d-flex flex-row">
@@ -331,7 +393,7 @@
                             <div class="row custom-table ps-4">
                                 <div class="col-9">
                                     <li class="d-flex align-items-center mt-1 link-black" style="height: 50px">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="me-2" viewBox="0 0 16 16" width="18" height="18"><path d="M10.561 8.073a6.005 6.005 0 0 1 3.432 5.142.75.75 0 1 1-1.498.07 4.5 4.5 0 0 0-8.99 0 .75.75 0 0 1-1.498-.07 6.004 6.004 0 0 1 3.431-5.142 3.999 3.999 0 1 1 5.123 0ZM10.5 5a2.5 2.5 0 1 0-5 0 2.5 2.5 0 0 0 5 0Z"></path></svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="me-2" viewBox="0 0 16 16" width="18" height="18"><path d="M10.561 8.073a6.005 6.005 0 0 1 3.432 5.142.75.75 0 1 1-1.498.07 4.5 4.5 0 0 0-8.99 0 .75.75 0 0 1-1.498-.07 6.004 6.004 0 0 1 3.431-5.142 3.999 3.999 0 1 1 5.123 0ZM10.5 5a2.5 2.5 0 1 0-5 0 2.5 2.5 0 0 0 5 0Z"></path></svg>
                                         <label label class="fs-6 fw-normal" for="">{{$workspace->name}}</label>
                                     </li>
                                 </div>
@@ -354,7 +416,7 @@
                             <div class="row custom-table ps-4">
                                 <div class="col-9">
                                     <li class="d-flex align-items-center mt-1 link-black" style="height: 50px">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="me-2" viewBox="0 0 16 16" width="18" height="18"><path d="M10.561 8.073a6.005 6.005 0 0 1 3.432 5.142.75.75 0 1 1-1.498.07 4.5 4.5 0 0 0-8.99 0 .75.75 0 0 1-1.498-.07 6.004 6.004 0 0 1 3.431-5.142 3.999 3.999 0 1 1 5.123 0ZM10.5 5a2.5 2.5 0 1 0-5 0 2.5 2.5 0 0 0 5 0Z"></path></svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="me-2" viewBox="0 0 16 16" width="18" height="18"><path d="M10.561 8.073a6.005 6.005 0 0 1 3.432 5.142.75.75 0 1 1-1.498.07 4.5 4.5 0 0 0-8.99 0 .75.75 0 0 1-1.498-.07 6.004 6.004 0 0 1 3.431-5.142 3.999 3.999 0 1 1 5.123 0ZM10.5 5a2.5 2.5 0 1 0-5 0 2.5 2.5 0 0 0 5 0Z"></path></svg>
                                         <label label class="fs-6 fw-normal" for="">{{$workspace->name}}</label>
                                     </li>
                                 </div>
@@ -369,7 +431,7 @@
                     @endforeach
                 </ul>
             </div>
-           
+
         </section>
         <!-- End Content -->
     </div>

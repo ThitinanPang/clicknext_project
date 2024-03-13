@@ -3,9 +3,13 @@
 use App\Http\Controllers\HomepageController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WorkspaceController;
+use App\Http\Controllers\LoginController;
+
 
 Route::resource('workspace',WorkspaceController::class);
 Route::resource('home',HomepageController::class);
+Route::resource('login',LoginController::class);
+
 
 
 
