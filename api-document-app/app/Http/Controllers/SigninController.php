@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class LoginController extends Controller
+class SigninController extends Controller
 {
     //Create Index
     public function index() {
-        return view('login');
+        return view('signin');
     }
 }

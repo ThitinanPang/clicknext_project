@@ -3,12 +3,12 @@
 use App\Http\Controllers\HomepageController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WorkspaceController;
-use App\Http\Controllers\LoginController;
+use App\Http\Controllers\SigninController;
 
 
 Route::resource('workspace',WorkspaceController::class);
 Route::resource('home',HomepageController::class);
-Route::resource('login',LoginController::class);
+Route::resource('signin',SigninController::class);
 
 
 
