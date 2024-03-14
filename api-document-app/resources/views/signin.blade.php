@@ -1,52 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="preconnect" href="https://fonts.googleapis.com%22%3E/" />
-        <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
-            rel="stylesheet"
-        />
-        <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
-        />
-        <link
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-            rel="stylesheet"
-        />
-        <link
-            href="https://fonts.googleapis.com/icon?family=Material+Icons"
-            rel="stylesheet"
-        />
-        <link
-            rel="stylesheet"
-            href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
-            integrity="sha384-4LISF5TTJX/fLmGSxO53rV4miRxdg84mZsxmO8Rx5jGtp/LbrixFETvWa5a6sESd"
-            crossorigin="anonymous"
-        />
-        <link
-            href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-            rel="stylesheet"
-            integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-            crossorigin="anonymous"
-        />
-        <title>Document</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <!-- Font -->
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+        <!-- Icon -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" integrity="sha384-4LISF5TTJX/fLmGSxO53rV4miRxdg84mZsxmO8Rx5jGtp/LbrixFETvWa5a6sESd" crossorigin="anonymous">
+        <!-- Bootstrap -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <title>Sign In your account</title>
         <style>
-            * {
+            *{
                 font-family: "Roboto", sans-serif;
                 font-weight: 400;
                 font-style: normal;
             }
 
             .primary {
-                background-color: #ef5b25;
+                background-color: #EF5B25;
                 color: #fff;
             }
             .secondary {
-                background-color: #f2f2f2;
+                background-color: #F2F2F2;
                 color: black;
             }
             .debug {
@@ -61,38 +42,87 @@
                 justify-content: center;
                 border-radius: 5px;
                 font-size: 14px;
+                transition: all 0.3s;
             }
-            .btn-menu:hover {
+            .btn-menu:hover{
+                background-color: #ea9c80;
+                width: 70px;
+                height: 70px;
+                color: #fff;
+                transition: all 0.3s;
+            }
+            .btn-menu:focus{
                 background-color: #ea9c80;
                 width: 70px;
                 height: 70px;
                 color: #fff;
             }
-            .dropdown {
+            .dropdown{
                 color: #000;
                 position: relative;
                 display: inline-block;
             }
             .dropdown-content {
-                display: block;
+                display: none;
                 position: absolute;
                 background-color: #f9f9f9;
-                box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
                 z-index: 1;
             }
-            .dropdown:focus .dropdown-content {
-                display: block;
+            .create-workspace {
+                display: none;
+                position: absolute;
+                background-color: #f9f9f9;
+                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+                z-index: 1;
+            }
+            .dropdown-nav-toggle:checked ~ .dropdown-content{
+                display: flex;
             }
 
+            .dropdown-menu {
+                border: #000 solid 0px;
+            }
+            .dropdown-item {
+                background: #fff;
+                color:#000;
+                transition: all 0.3s;
+            }
+            .dropdown-item:hover {
+                background: #f2f2f2;
+                color:dodgerblue;
+                transition: all 0.3s;
+            }
             .navbar {
-                border-bottom: #f2f2f2 solid 1px;
+                border-bottom: #F2F2F2 solid 1px;
             }
 
-            .top-line {
-                border-top: #f2f2f2 solid 1px;
+            .custom-table {
+                border-top: #F2F2F2 solid 1px;
+                background-color: white;
+                transition: all 0.3s;
+            }
+            .custom-table:hover {
+                background-color: #f2f2f2;
+                transition: all 0.3s;
+            }
+            td {
+                background-color: transparent;
+                color: #000;
+            }
+            td:hover {
+                color: dodgerblue;
             }
 
             i.fa {
+                position: absolute;
+                top: 6px;
+                left: 10px;
+                color: #808080;
+                font-size: 16px;
+                z-index: 9999;
+            }
+            .icon {
                 position: absolute;
                 top: 6px;
                 left: 10px;
@@ -104,204 +134,228 @@
                 position: relative;
                 padding-left: 30px !important;
             }
-            .pain {
+            .pane {
+                background-color: white;
+                border-radius: 5px;
+                box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.1);
             }
             .textfield {
                 width: auto;
                 height: 30px;
-                border: 2px solid #f2f2f2;
+                border: 2px solid #F2F2F2;
                 border-radius: 5px;
                 font-size: 16px;
                 padding: 1px;
             }
+            .textfield:focus {
+                outline: 0;
+                border:dodgerblue solid 2px;
+                transition: all 0.3s;
+            }
+            .btn {
+                height: 100%;
+                width: 100%;
+                background: #fff;
+                color: #000;
+                font-weight: 500;
+            }
+            .btn:hover {
+                background: #f2f2f2;
+                color: #000;
+                font-weight: 500;
+            }
+            .btn:focus {
+                background: #f2f2f2;
+                color: #000;
+                font-weight: 500;
+            }
+            .btn-secondary {
+                background: #f2f2f2;
+                color: #000;
+                font-weight: 500;
+                border: #f2f2f2 solid 0px;
+            }
+            .btn-secondary:hover {
+                background: #eeeeee;
+                color: #000;
+                font-weight: 500;
+                border: #f2f2f2 solid 0px;
+            }
+            .btn-secondary:focus {
+                background: #eeeeee;
+                color: #000;
+                font-weight: 500;
+                border: #f2f2f2 solid 0px;
+            }
+            .btn-primary {
+                background: #EF5B25;
+                color: #fff;
+                font-weight: 500;
+                border: #EF5B25 solid 0px;
+            }
+            .btn-primary:hover {
+                background: #d75120;
+                color: #fff;
+                font-weight: 500;
+                border: #ef5b25 solid 0px;
+            }
+            .btn-primary:focus {
+                background: #d75120;
+                color: #fff;
+                font-weight: 500;
+                border: #EF5B25 solid 0px;
+            }
+            .link-black {
+                color: #000000;
+                transition: all 0.2s;
+                text-decoration: none;
+                height: 35px;
+                display: flex;
+                align-items: center;
+            }
+            .link-black:hover {
+                color: dodgerblue;
+                transition: all 0.2s;
+                cursor: pointer;
+            }
+            .link-primary {
+                color: #EF5B25;
+                transition: all 0.2s;
+                text-decoration: none;
+                height: 35px;
+                display: flex;
+                align-items: center;
+            }
+            .link-primary:hover {
+                color: dodgerblue;
+                transition: all 0.2s;
+                cursor: pointer;
+
+            }
+            .link-grey {
+                color: #808080;
+                transition: all 0.2s;
+                text-decoration: none;
+                height: 35px;
+                display: flex;
+                align-items: center;
+            }
+            .link-grey:hover {
+                color: dodgerblue;
+                transition: all 0.2s;
+                cursor: pointer;
+            }
             .line {
-                width: 310px;
+                width: 100%;
                 height: 1px;
                 background-color: #808080;
                 margin: 0 0px;
             }
-            .text {
-                font-size: 16px;
-                color: #808080;
-                margin: 0 10px;
+            .cursor {
+                cursor: pointer;
+            }
+            .checkbox {
+                position: relative;
+                overflow: hidden;
+            }
+
+            .checkbox__input {
+                position: absolute;
+                top: -100px;
+                left: -100px;
+            }
+
+            .checkbox__inner {
+                display: inline-block;
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+                border: 2px solid #eeeeee;
+                background: transparent no-repeat center;
+            }
+
+            .checkbox__input:checked + .checkbox__inner {
+                border-color: #EF5B25;
+                background-color: #EF5B25;
+                background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg width='14px' height='10px' viewBox='0 0 14 10' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'%3E%3C!-- Generator: Sketch 59.1 (86144) - https://sketch.com --%3E%3Ctitle%3Echeck%3C/title%3E%3Cdesc%3ECreated with Sketch.%3C/desc%3E%3Cg id='Page-1' stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Cg id='ios_modification' transform='translate(-27.000000, -191.000000)' fill='%23FFFFFF' fill-rule='nonzero'%3E%3Cg id='Group-Copy' transform='translate(0.000000, 164.000000)'%3E%3Cg id='ic-check-18px' transform='translate(25.000000, 23.000000)'%3E%3Cpolygon id='check' points='6.61 11.89 3.5 8.78 2.44 9.84 6.61 14 15.56 5.05 14.5 4'%3E%3C/polygon%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+                background-size: 14px 10px;
             }
         </style>
     </head>
-
-    <body>
-        <script
-            src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-            crossorigin="anonymous"
-        ></script>
+    <body class="overflow-hidden">
         <div class="row">
-            <div
-                class="col d-flex flex-column justify-content-center align-items-center primary"
-                style="height: 100vh"
-            >
-                <div
-                    class="container d-flex flex-column justify-content-center align-items-center"
-                >
-                    <h1>Welcome Back</h1>
-                    <p style="font-size: 32px; font-weight: 100">
-                        API Documentation & Design Tools
-                    </p>
+            <div class="col primary d-flex flex-column justify-content-center align-items-center" style="height: 100vh;">
+                <div class="d-flex flex-column align-items-center">
+                    <label class="mb-2" style="font-size: 64px; font-weight: 500;">Welcome Back</label>
+                    <p class="mb-5" style="font-size: 32px; font-weight: 300">API Documentation & Design Tools</p>
                 </div>
-                <img
-                    class="mt-2"
-                    src="https://cdn.discordapp.com/attachments/994685233087643719/1217123237176152244/4579502.jpg?ex=6602e158&is=65f06c58&hm=a943c0da042e95d7de8aa002260be016ea51314ab6b9d9d524419c5ec8a17095&"
-                    alt=""
-                    width="400px"
-                    height="400px"
-                    style="border-radius: 100%"
-                />
+                <div>
+                    <img style="border-radius: 100%;" src="https://cdn.discordapp.com/attachments/994685233087643719/1217123237176152244/4579502.jpg?ex=6602e158&is=65f06c58&hm=a943c0da042e95d7de8aa002260be016ea51314ab6b9d9d524419c5ec8a17095&" alt="" width="460px" height="460px">
+                </div>
             </div>
-            <div class="col" style="height: 100vh">
-                <div class="logo container d-flex justify-content-start">
-                    <img
-                        class="mt-4"
-                        src="https://cdn.discordapp.com/attachments/994685233087643719/1217121151285985350/clicknext_logo.png?ex=6602df67&is=65f06a67&hm=9b903fcb7daa77f74eb6166e5ecf0b998078316cf21d431e1dad8a376caa6082&"
-                        alt=""
-                        width="155px"
-                        height="55px"
-                    />
+            <div class="col">
+                <div class="header mt-2 ms-2">
+                    <img src="https://cdn.discordapp.com/attachments/994685233087643719/1217121151285985350/clicknext_logo.png?ex=6602df67&is=65f06a67&hm=9b903fcb7daa77f74eb6166e5ecf0b998078316cf21d431e1dad8a376caa6082&" alt="" width="155px">
                 </div>
-                <div
-                    class="container d-flex flex-column justify-content-center align-items-center mt-5"
-                >
-                    <p style="font-size: 24px; font-weight: 400">
-                        Sign in to your account
-                    </p>
-
-                    <div
-                        class="d-flex flex-column justify-content-center align-items-center"
-                        style="width: 310px"
-                    >
-                        <div class="input-group mt-3">
-                            <i
-                                class="fa fa-user mt-2"
-                                xmlns="http://www.w3.org/2000/svg"
-                            ></i>
-                            <input
-                                class="form-control textfield"
-                                style="
-                                    width: 310px;
-                                    height: 45px;
-                                    border-radius: 5px;
-                                "
-                                type="text"
-                                name=""
-                                id=""
-                                placeholder="Name"
-                            />
+                <div class="col d-flex flex-column align-items-center">
+                    <div class="body d-flex flex-column justify-center align-items-center" style="width: 310px; margin-top: 20%;">
+                        <label for="" class="mb-4" style="font-size: 32px;">Sign in your account</label>
+                        <div class="input-group mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="icon me-2 mt-2" viewBox="0 0 16 16" width="18" height="18"><path d="M10.561 8.073a6.005 6.005 0 0 1 3.432 5.142.75.75 0 1 1-1.498.07 4.5 4.5 0 0 0-8.99 0 .75.75 0 0 1-1.498-.07 6.004 6.004 0 0 1 3.431-5.142 3.999 3.999 0 1 1 5.123 0ZM10.5 5a2.5 2.5 0 1 0-5 0 2.5 2.5 0 0 0 5 0Z"></path></svg>
+                            <input class="textfield" style="padding-left: 40px; height: 45px; width: 100%; border-radius: 5px;" type="text" name="" id=""  placeholder="Enter your email">
                         </div>
-                        <div class="input-group mt-3">
-                            <i
-                                class="fa fa-key mt-2"
-                                xmlns="http://www.w3.org/2000/svg"
-                            ></i>
-                            <input
-                                class="form-control textfield"
-                                style="
-                                    width: 310px;
-                                    height: 45px;
-                                    border-radius: 5px;
-                                "
-                                type="password"
-                                name=""
-                                id=""
-                                placeholder="Password"
-                            />
+                        <div class="input-group mb-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="icon me-2 mt-2" viewBox="0 0 16 16" width="16" height="16"><path d="M4 4a4 4 0 0 1 8 0v2h.25c.966 0 1.75.784 1.75 1.75v5.5A1.75 1.75 0 0 1 12.25 15h-8.5A1.75 1.75 0 0 1 2 13.25v-5.5C2 6.784 2.784 6 3.75 6H4Zm8.25 3.5h-8.5a.25.25 0 0 0-.25.25v5.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-5.5a.25.25 0 0 0-.25-.25ZM10.5 6V4a2.5 2.5 0 1 0-5 0v2Z"></path></svg>
+                            <input class="textfield" style="padding-left: 40px; height: 45px; width: 100%; border-radius: 5px;" type="password" name="" id="password"  placeholder="Enter your password">
+                            <i class="bi bi-eye-slash icon" style="margin-left: 85%; margin-top: 6px;" id="password-icon" onclick="togglePasswordVisibility('password', 'password-icon')">
+                                <input type="checkbox" name="" id="password-visibility" class="visually-hidden">
+                            </i>
                         </div>
-                        <div class="row mt-3">
-                            <div
-                                class="col align-items-center d-flex justify-content-between"
-                                style="width: 100%"
-                            >
-                                <input
-                                    class="form-check-input text-Remember me-1"
-                                    type="checkbox"
-                                    id=""
-                                    value=""
-                                    checked
-                                />
-                                <label
-                                    class="mt-1"
-                                    style="
-                                        color: rgba(157, 157, 157, 1);
-                                        font-size: 14px;
-                                    "
-                                    >Remember me</label
-                                >
-                                <a
-                                    href=""
-                                    class="nav-link mt-1"
-                                    style="
-                                        color: rgba(157, 157, 157, 1);
-                                        font-size: 14px;
-                                    "
-                                    >Forgot your password?</a
-                                >
+                        <div class="d-flex p-0 mb-3" style="width: 100%;">
+                            <div class="col d-flex align-items-center">
+                                <label class="checkbox me-2 mt-1">
+                                    <input type="checkbox" class="checkbox__input" id="remember"/>
+                                    <span class="checkbox__inner"></span>
+                                </label>
+                                <label for="remember" style="font-weight: 400; font-size: 14px; color: #808080;">Remember me</label>
+                            </div>
+                            <div class="col d-flex align-items-center">
+                                <a class="link-grey" style="font-size: 14px; font-weight:400;" href="/reset-password">Forgot your password?</a>
                             </div>
                         </div>
-                        <button
-                            class="mt-3 btn primary"
-                            type="submit"
-                            style="width: 310px; font-size: 16px"
-                            height="45px"
-                        >
-                            Sign in
-                        </button>
-                    </div>
-                    <div
-                        class="d-flex justify-content-center align-items-center mt-3"
-                        style="width: 310px"
-                    >
-                        <div class="line"></div>
-                        <div class="text">or</div>
-                        <div class="line"></div>
-                    </div>
-                    <div
-                        class="container d-flex flex-row justify-content-between align-items-center mt-3"
-                        style="width: auto"
-                    >
-                        <img
-                            width="23.56px"
-                            height="24.04px"
-                            src="data:image/png;base64,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"
-                            alt=""
-                        />
-                        <a
-                            href=""
-                            class="nav-link"
-                            style="color: rgb(0, 0, 0); font-size: 14px"
-                            >sign with Google</a
-                        >
-                    </div>
-                    <div
-                        class="container d-flex flex-column justify-content-center align-items-center mt-3"
-                    >
-                        <p
-                            style="
-                                color: rgba(157, 157, 157, 1);
-                                font-size: 14px;
-                            "
-                        >
-                            Don't have an account yet
-                        </p>
-                    </div>
-                    <div
-                        class="container d-flex flex-column justify-content-center align-items-center mb-4"
-                    >
-                        <a
-                            href=""
-                            class="nav-link"
-                            style="color: rgba(239, 91, 37, 1); font-size: 14px"
-                            >Create an account</a
-                        >
+                        <button class="btn btn-primary" style="font-weight:400; height: 45px;" type="submit">Sign In</button>
+                        <div class="d-flex justify-content-center align-items-center mt-4 mb-4" style="width: 100%">
+                            <div class="line"></div>
+                            <div class="mx-2" style="color: #808080;">or</div>
+                            <div class="line"></div>
+                        </div>
+                        <a href="" class="link-black mb-4">
+                            <svg  xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="25px" height="25px" viewBox="0 0 48 48">
+                                <path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"></path><path fill="#FF3D00" d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"></path><path fill="#4CAF50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"></path><path fill="#1976D2" d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"></path>
+                                </svg>
+                                <label class="ms-2 cursor" style="font-size: 14px; font-weight: 500;" for="">Sign with Google</label>
+                        </a>
+                        <p class="mb-4" style="font-size: 14px; font-weight:400; color: #808080;">Don't have an account yet?</p>
+                        <a class="link-primary" href="/signup">Create an account</a>
                     </div>
                 </div>
             </div>
         </div>
+        <script>
+           function togglePasswordVisibility(inputId, iconId) {
+                var checkbox = document.getElementById(inputId);
+                var icon = document.getElementById(iconId);
+                var passwordField = document.getElementById(inputId);
+                if (checkbox.checked) {
+                    icon.classList.replace('bi-eye', 'bi-eye-slash');
+                    passwordField.setAttribute('type', 'password');
+                } else {
+                    icon.classList.replace('bi-eye-slash', 'bi-eye');
+                    passwordField.setAttribute('type', 'text');
+                }
+                checkbox.checked = !checkbox.checked;
+            }
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     </body>
 </html>
