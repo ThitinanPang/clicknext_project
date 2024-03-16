@@ -350,11 +350,12 @@
                     </div>
                 </div>
                 <!-- Create Workspace Pane -->
-                <form action="{{ route('home.store') }}" method="POST" enctype="multipart/form-data" class="create-workspace flex-column justify-content-start pane p-3" id="form-create-workspace" style="width: 300px; margin-left: 425px;">
+                <form action="{{ route('home.store') }}" method="POST" enctype="multipart/form-data" class="create-workspace flex-column justify-content-start pane p-3 needs-validation" id="form-create-workspace" style="width: 300px; margin-left: 425px;" novalidate>
                     @csrf
                     <label for="" style="font-size: 20px; font-weight: 500;">Create your workspace</label>
                     <label class="mt-1" style="color: #808080; font-size: 14px; font-weight: 400;">Name</label>
-                    <input type="text" class="textfield p-1" name="" id="workspace-input-name">
+                    <input type="text" class="textfield p-1 form-control" name="" id="workspace-input-name" required>
+                    <div class="invalid-feedback">Please fill your workspace name.</div>
                     <div class="d-flex flex-row mt-2 align-self-end" style="width: 140px;" >
                         <div class="col py-1">
                             <button class="btn btn-secondary" type="button" onclick="toggleCreateWorkspacePane('close')">Cancel</button>
@@ -368,20 +369,26 @@
             <div class="dropdown pe-5 fs-5">
                 <button class="btn btn-white dropdown d-flex align-items-center" onclick="toggleDropdownProfile()" style="height: 50px;" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                     <img src="https://media.discordapp.net/attachments/994685233087643719/1215271120127791114/77ed449a829d201a7940b0f98d49ca5a3cf43dd9.jpg?ex=65fc246d&is=65e9af6d&hm=cc53b20e7bac20faa1f57f479c85b3a5c19f166a5ece6b0da943736fc79cb017&=&format=webp" alt="" width="40" height="40" class="rounded-circle me-2">
-                    <span class="fs-5 fw-normal">Sweed</span>
+                    <span class="fs-5 fw-normal">{{Auth::user()->name}}</span>
                     <span id="dropdown-profile-icon" class="material-icons">expand_more</span>
                 </button>
                 <ul class="dropdown-menu pane" aria-labelledby="dropdownMenuButton1">
-                  <li><a class="dropdown-item" href="#">View Profile</a></li>
-                  <li><a class="dropdown-item" href="#">Sign Out</a></li>
-                </ul>
+                    <li><a class="dropdown-item" href="#">View Profile</a></li>
+                    <li>
+                        <form action="{{route('logout')}}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button class="dropdown-item" type="submit">Sign Out</button>
+                        </form>
+                    </li>
+                  </ul>
             </div>
         </nav>
         @if ($message = Session::get('success'))
-        <div class="alert alert-success">{{$message}}</div>
+        <div class="alert alert-success">Workspace has been created</div>
         @endif
         @error('workspace-input-name')
-        <div class="alert alert-danger">{{$message}}</div>
+        <div class="alert alert-danger">The Name is required.</div>
         @enderror
         <!-- Start Content -->
         <section class="content">
@@ -437,6 +444,24 @@
     </div>
     <!-- End Main -->
     <script>
+        (() => {
+                'use strict'
+
+                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                const forms = document.querySelectorAll('.needs-validation')
+
+                // Loop over them and prevent submission
+                Array.from(forms).forEach(form => {
+                    form.addEventListener('submit', event => {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+
+                    form.classList.add('was-validated')
+                    }, false)
+                })
+                })()
         function toggleDropdownNav() {
             var checkbox = document.getElementById('dropdown-nav-toggle');
             var icon = document.getElementById('dropdown-nav-icon');
