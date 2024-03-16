@@ -321,7 +321,7 @@
                         <div class="col-7 d-flex align-items-center p-1" style="height: 40px;">
                             <div class="input-group">
                                 <i class="fa fa-search" style="font-size: 14px; margin-top: 2px;"></i>
-                                <input class="textfield" style="padding-left: 30px; width: 100%; border-radius: 5px;" type="search" name="" id=""  placeholder="Search workspaces">
+                                <input class="textfield" style="padding-left: 30px; width: 100%; border-radius: 5px; font-size: 14px;" type="search" name="" id=""  placeholder="Search workspaces">
                             </div>
                         </div>
                         <div class="col-5 d-flex align-items-center p-1" style="height: 40px;">
@@ -336,7 +336,7 @@
                                     <div class="row custom-table" style="border: none">
                                         <div class="col">
                                             <li class="d-flex align-items-center mt-1 link-black" style="height: 30px">
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="me-2" viewBox="0 0 16 16" width="18" height="18"><path d="M10.561 8.073a6.005 6.005 0 0 1 3.432 5.142.75.75 0 1 1-1.498.07 4.5 4.5 0 0 0-8.99 0 .75.75 0 0 1-1.498-.07 6.004 6.004 0 0 1 3.431-5.142 3.999 3.999 0 1 1 5.123 0ZM10.5 5a2.5 2.5 0 1 0-5 0 2.5 2.5 0 0 0 5 0Z"></path></svg>
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="me-2" viewBox="0 0 16 16" width="18" height="18"><path d="M10.561 8.073a6.005 6.005 0 0 1 3.432 5.142.75.75 0 1 1-1.498.07 4.5 4.5 0 0 0-8.99 0 .75.75 0 0 1-1.498-.07 6.004 6.004 0 0 1 3.431-5.142 3.999 3.999 0 1 1 5.123 0ZM10.5 5a2.5 2.5 0 1 0-5 0 2.5 2.5 0 0 0 5 0Z"></path></svg>
                                                 <label label class="fs-6 fw-normal" for="">{{$workspace->name}}</label>
                                             </li>
                                         </div>
@@ -354,7 +354,7 @@
                     @csrf
                     <label for="" style="font-size: 20px; font-weight: 500;">Create your workspace</label>
                     <label class="mt-1" style="color: #808080; font-size: 14px; font-weight: 400;">Name</label>
-                    <input type="text" class="textfield p-1 form-control" name="" id="workspace-input-name" required>
+                    <input type="text" class="textfield p-1 form-control" name="workspace-input-name" id="workspace-input-name" required>
                     <div class="invalid-feedback">Please fill your workspace name.</div>
                     <div class="d-flex flex-row mt-2 align-self-end" style="width: 140px;" >
                         <div class="col py-1">
@@ -387,9 +387,6 @@
         @if ($message = Session::get('success'))
         <div class="alert alert-success">Workspace has been created</div>
         @endif
-        @error('workspace-input-name')
-        <div class="alert alert-danger">The Name is required.</div>
-        @enderror
         <!-- Start Content -->
         <section class="content">
             <div class="ps-1 mt-4 "  style="height:300px;">

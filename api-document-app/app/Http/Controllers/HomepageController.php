@@ -24,7 +24,14 @@ class HomepageController extends Controller
         $request->validate([
             'workspace-input-name' => 'required'
         ]);
-        $user_create = auth()->id() ?? 0; // You can set a default value like 0 if there's no authenticated user
+        $user = auth()->user() ;
+
+        if($user) {
+            $user_create = $user->name;
+        }
+        else {
+            $user_create = 'Anonymous';
+        }
         $favorite = false;
 
         $workspace = new Workspace;
