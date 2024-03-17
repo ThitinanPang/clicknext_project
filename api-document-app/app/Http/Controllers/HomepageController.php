@@ -14,10 +14,7 @@ class HomepageController extends Controller
         $data['workspaces'] = Workspace::orderBy('id','desc')->paginate(5);
         return view('index', $data);
     }
-     //Create resource
-     public function create(){
-        return view('home.index');
-    }
+
 
     //Store resource
     public function store(Request $request){

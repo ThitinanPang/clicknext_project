@@ -34,28 +34,25 @@
             border: 1px solid red;
         }
         .btn-menu {
+            cursor: pointer;
             color: #fff;
-            width: 70px;
-            height: 70px;
+            width: 100%;
+            height: 65px;
             background-color: transparent;
             list-style: none;
+            display: flex;
+            flex-direction: column;
             justify-content: center;
-            border-radius: 5px;
+            align-items: center;
             font-size: 14px;
             transition: all 0.3s;
         }
         .btn-menu:hover{
             background-color: #ea9c80;
-            width: 70px;
-            height: 70px;
-            color: #fff;
             transition: all 0.3s;
         }
         .btn-menu:focus{
             background-color: #ea9c80;
-            width: 70px;
-            height: 70px;
-            color: #fff;
         }
         .dropdown{
             color: #000;
@@ -169,6 +166,23 @@
             font-weight: 500;
         }
         .btn:focus {
+            background: #f2f2f2;
+            color: #000;
+            font-weight: 500;
+        }
+        .btn-dropdown{
+            height: 100%;
+            width: 100%;
+            background: #fff;
+            color: #000;
+            font-weight: 500;
+        }
+        .btn-dropdown:hover {
+            background: #f2f2f2;
+            color: #000;
+            font-weight: 500;
+        }
+        .btn-dropdown:focus {
             background: #f2f2f2;
             color: #000;
             font-weight: 500;
@@ -366,27 +380,30 @@
 </head>
 <body class="d-flex flex-row">
      <!-- Start Sidebar -->
-     <aside class="d-flex flex-shrink-0 flex-column primary sticky-top" style="width:5.625rem; height: 100vh;">
-        <ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
-            <a href="#" class="mt-2 link-body-emphasis text-decoration-none" data-bs-toggle="dropdown" aria-expanded="false">
+     <aside class="d-flex flex-shrink-0 flex-column primary" style="width:5.625rem; min-height: 100vh; overflow-y: auto;">
+        <div class="list-group flex-column mb-auto">
+            <a href="{{ route('home.index') }}" style="height: 65px" class="link-body-emphasis text-decoration-none d-flex justify-content-center align-items-center" data-bs-toggle="dropdown" aria-expanded="false">
                 <img width="50px" src="https://media.discordapp.net/attachments/994685233087643719/1215261876972429323/circle_logo.png?ex=65fc1bd1&is=65e9a6d1&hm=2ca5c2f0daef63d683772b7d936e3398948ccc82dff64fe57dcca0eedd499900&=&format=webp&quality=lossless" alt="clicknext-logo">
             </a>
-            <a href="#" class="mt-3 link-body-emphasis text-decoration-none d-flex justify-content-center text-align-center" data-bs-toggle="dropdown" aria-expanded="false">
-                <li class="btn-menu d-flex flex-column"><span class="material-symbols-outlined" style="font-size: 36px;">folder</span>
-                    <label class="fw-normal" for="">Collections</label>
-                </li>
-            </a>
-            <a href="#" class="mt-3 link-body-emphasis text-decoration-none d-flex justify-content-center text-align-center" data-bs-toggle="dropdown" aria-expanded="false">
-                <li class="btn-menu d-flex flex-column"><span class="material-symbols-outlined" style="font-size: 36px;">manage_history</span>
-                    <label class="fw-normal" for="">History</label>
-                </li>
-            </a>
-            <a href="#" class="mt-3 link-body-emphasis text-decoration-none d-flex justify-content-center text-align-center" data-bs-toggle="dropdown" aria-expanded="false">
-                <li class="btn-menu d-flex flex-column"><span class="material-symbols-outlined" style="font-size: 36px;">delete</span>
-                    <label class="fw-normal" for="">Trash</label>
-                </li>
-            </a>
-        </ul>
+            <div class="list-group-items btn-menu">
+                <span class="material-symbols-outlined" style="font-size: 36px;">folder</span>
+                <a href="#" class="link-body-emphasis text-decoration-none d-flex justify-content-center text-align-center" data-bs-toggle="dropdown" aria-expanded="false">
+                    <label class="fw-normal cursor" style="color: white" for="">Collections</label>
+                </a>
+            </div>
+            <div class="list-group-items btn-menu">
+                <span class="material-symbols-outlined" style="font-size: 36px;">manage_history</span>
+                <a href="#" class="link-body-emphasis text-decoration-none d-flex justify-content-center text-align-center" data-bs-toggle="dropdown" aria-expanded="false">
+                    <label class="fw-normal cursor" style="color: white" for="">History</label>
+                </a>
+            </div>
+            <div class="list-group-items btn-menu">
+                <span class="material-symbols-outlined" style="font-size: 36px;">delete</span>
+                <a href="#" class="link-body-emphasis text-decoration-none d-flex justify-content-center text-align-center" data-bs-toggle="dropdown" aria-expanded="false">
+                    <label class="fw-normal cursor" style="color: white" for="">Trash</label>
+                </a>
+            </div>
+        </div>
     </aside>
     <!-- Start Main -->
     <div class="d-flex flex-column container-fluid main p-0">
@@ -420,8 +437,10 @@
                                     <div class="row custom-table" style="border: none">
                                         <div class="col">
                                             <li class="d-flex align-items-center mt-1 link-black" style="height: 30px">
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="me-2" viewBox="0 0 16 16" width="18" height="18"><path d="M10.561 8.073a6.005 6.005 0 0 1 3.432 5.142.75.75 0 1 1-1.498.07 4.5 4.5 0 0 0-8.99 0 .75.75 0 0 1-1.498-.07 6.004 6.004 0 0 1 3.431-5.142 3.999 3.999 0 1 1 5.123 0ZM10.5 5a2.5 2.5 0 1 0-5 0 2.5 2.5 0 0 0 5 0Z"></path></svg>
-                                                <label label class="fs-6 fw-normal" for="">{{$workspace->name}}</label>
+                                                <a class="link-black" style="width: 100%; height:100%" href="{{ route('workspace.show', ['workspace' => $workspace->id]) }}">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="me-2" viewBox="0 0 16 16" width="18" height="18"><path d="M10.561 8.073a6.005 6.005 0 0 1 3.432 5.142.75.75 0 1 1-1.498.07 4.5 4.5 0 0 0-8.99 0 .75.75 0 0 1-1.498-.07 6.004 6.004 0 0 1 3.431-5.142 3.999 3.999 0 1 1 5.123 0ZM10.5 5a2.5 2.5 0 1 0-5 0 2.5 2.5 0 0 0 5 0Z"></path></svg>
+                                                    <label label class="fs-6 fw-normal" for="">{{$workspace->name}}</label>
+                                                </a>
                                             </li>
                                         </div>
                                     </div>

@@ -34,28 +34,25 @@
             border: 1px solid red;
         }
         .btn-menu {
+            cursor: pointer;
             color: #fff;
-            width: 70px;
-            height: 70px;
+            width: 100%;
+            height: 65px;
             background-color: transparent;
             list-style: none;
+            display: flex;
+            flex-direction: column;
             justify-content: center;
-            border-radius: 5px;
+            align-items: center;
             font-size: 14px;
             transition: all 0.3s;
         }
         .btn-menu:hover{
             background-color: #ea9c80;
-            width: 70px;
-            height: 70px;
-            color: #fff;
             transition: all 0.3s;
         }
         .btn-menu:focus{
             background-color: #ea9c80;
-            width: 70px;
-            height: 70px;
-            color: #fff;
         }
         .dropdown{
             color: #000;
@@ -118,6 +115,15 @@
             color: dodgerblue;
         }
 
+        .icon {
+            position: absolute;
+            top: 6px;
+            left: 10px;
+            color: #808080;
+            font-size: 16px;
+            z-index: 9999;
+        }
+
         i.fa {
             position: absolute;
             top: 6px;
@@ -148,7 +154,23 @@
             border:dodgerblue solid 2px;
             transition: all 0.3s;
         }
-
+        .btn-dropdown{
+            height: 100%;
+            width: 100%;
+            background: #fff;
+            color: #000;
+            font-weight: 500;
+        }
+        .btn-dropdown:hover {
+            background: #f2f2f2;
+            color: #000;
+            font-weight: 500;
+        }
+        .btn-dropdown:focus {
+            background: #f2f2f2;
+            color: #000;
+            font-weight: 500;
+        }
         .btn-secondary {
             background: #f2f2f2;
             color: #000;
@@ -311,7 +333,7 @@
             color: #fff;
             transition: all 0.3s;
         }
-        .add-nav-items:hover{
+           .add-nav-items:hover{
             background-color: transparent;
             border: none;
             color: #808080;
@@ -343,117 +365,122 @@
 <body class="d-flex flex-row">
      <!-- Start Sidebar -->
      <aside class="d-flex flex-shrink-0 flex-column primary" style="width:5.625rem; min-height: 100vh; overflow-y: auto;">
-        <ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
-            <a href="#" class="mt-2 link-body-emphasis text-decoration-none" data-bs-toggle="dropdown" aria-expanded="false">
+        <div class="list-group flex-column mb-auto">
+            <a href="{{ route('home.index') }}" style="height: 65px" class="link-body-emphasis text-decoration-none d-flex justify-content-center align-items-center" data-bs-toggle="dropdown" aria-expanded="false">
                 <img width="50px" src="https://media.discordapp.net/attachments/994685233087643719/1215261876972429323/circle_logo.png?ex=65fc1bd1&is=65e9a6d1&hm=2ca5c2f0daef63d683772b7d936e3398948ccc82dff64fe57dcca0eedd499900&=&format=webp&quality=lossless" alt="clicknext-logo">
             </a>
-            <a href="#" class="mt-3 link-body-emphasis text-decoration-none d-flex justify-content-center text-align-center" data-bs-toggle="dropdown" aria-expanded="false">
-                <li class="btn-menu d-flex flex-column"><span class="material-symbols-outlined" style="font-size: 36px;">folder</span>
-                    <label class="fw-normal" for="">Collections</label>
-                </li>
-            </a>
-            <a href="#" class="mt-3 link-body-emphasis text-decoration-none d-flex justify-content-center text-align-center" data-bs-toggle="dropdown" aria-expanded="false">
-                <li class="btn-menu d-flex flex-column"><span class="material-symbols-outlined" style="font-size: 36px;">manage_history</span>
-                    <label class="fw-normal" for="">History</label>
-                </li>
-            </a>
-            <a href="#" class="mt-3 link-body-emphasis text-decoration-none d-flex justify-content-center text-align-center" data-bs-toggle="dropdown" aria-expanded="false">
-                <li class="btn-menu d-flex flex-column"><span class="material-symbols-outlined" style="font-size: 36px;">delete</span>
-                    <label class="fw-normal" for="">Trash</label>
-                </li>
-            </a>
-        </ul>
+            <div class="list-group-items btn-menu">
+                <span class="material-symbols-outlined" style="font-size: 36px;">folder</span>
+                <a href="#" class="link-body-emphasis text-decoration-none d-flex justify-content-center text-align-center" data-bs-toggle="dropdown" aria-expanded="false">
+                    <label class="fw-normal cursor" style="color: white" for="">Collections</label>
+                </a>
+            </div>
+            <div class="list-group-items btn-menu">
+                <span class="material-symbols-outlined" style="font-size: 36px;">manage_history</span>
+                <a href="#" class="link-body-emphasis text-decoration-none d-flex justify-content-center text-align-center" data-bs-toggle="dropdown" aria-expanded="false">
+                    <label class="fw-normal cursor" style="color: white" for="">History</label>
+                </a>
+            </div>
+            <div class="list-group-items btn-menu">
+                <span class="material-symbols-outlined" style="font-size: 36px;">delete</span>
+                <a href="#" class="link-body-emphasis text-decoration-none d-flex justify-content-center text-align-center" data-bs-toggle="dropdown" aria-expanded="false">
+                    <label class="fw-normal cursor" style="color: white" for="">Trash</label>
+                </a>
+            </div>
+        </div>
     </aside>
     <!-- End Sidebar -->
     <!-- Start Main -->
     <div class="d-flex flex-column container-fluid main p-0">
-        <!-- Start Navbar -->
-        <nav class="ps-2 d-flex navbar navbar-light bg-white sticky-top">
-            <div class="dropdown">
-                <input type="checkbox" id="dropdown-nav-toggle" class="dropdown-nav-toggle visually-hidden">
-                <button class="btn btn-white dropdown d-flex align-items-center" style="height: 50px;" onclick="toggleDropdownNav(),toggleCreateWorkspacePane('close')">
-                    <span class="material-symbols-outlined">grid_view</span>
-                    <span class="fs-5 fw-normal">Workspaces</span>
-                    <span id="dropdown-nav-icon" class="material-icons">expand_more</span>
-                </button>
-                <!-- Dropdown Menu -->
-                <div class="dropdown-content flex-column container pane" style=" width: 420px; height: 230px;">
-                    <div class="row align-items-start p-2">
-                        <div class="col-7 d-flex align-items-center p-1" style="height: 40px;">
-                            <div class="input-group">
-                                <i class="fa fa-search" style="font-size: 14px; margin-top: 2px;"></i>
-                                <input class="textfield" style="padding-left: 30px; width: 100%; border-radius: 5px; font-size: 14px;" type="search" name="" id=""  placeholder="Search workspaces">
-                            </div>
-                        </div>
-                        <div class="col-5 d-flex align-items-center p-1" style="height: 40px;">
-                            <button class="m-auto rounded-1 w-100 btn btn-secondary pt-1" onclick="toggleCreateWorkspacePane('open')">Create Workspace</button>
+       <!-- Start Navbar -->
+       <nav class="ps-2 d-flex navbar navbar-light bg-white sticky-top">
+        <div class="dropdown">
+            <input type="checkbox" id="dropdown-nav-toggle" class="dropdown-nav-toggle visually-hidden">
+            <button class="btn btn-dropdown btn-white dropdown d-flex align-items-center" style="height: 50px;" onclick="toggleDropdownNav(),toggleCreateWorkspacePane('close')">
+                <span class="material-symbols-outlined">grid_view</span>
+                <span class="fs-5 fw-normal">Workspaces</span>
+                <span id="dropdown-nav-icon" class="material-icons">expand_more</span>
+            </button>
+            <!-- Dropdown Menu -->
+            <div class="dropdown-content flex-column container pane" style=" width: 420px; height: 230px;">
+                <div class="row align-items-start p-2">
+                    <div class="col-7 d-flex align-items-center p-1" style="height: 40px;">
+                        <div class="input-group">
+                            <i class="fa fa-search" style="font-size: 14px; margin-top: 2px;"></i>
+                            <input class="textfield" style="padding-left: 30px; width: 100%; border-radius: 5px; font-size: 14px;" type="search" name="" id=""  placeholder="Search workspaces">
                         </div>
                     </div>
-                    <div class="row">
-                        <label style="color: #808080; font-size: 14px; font-weight: 500;">Recently visited</label>
-                        <ul style="list-style-type:none;">
-                            @foreach ($workspaces as $index => $workspace)
-                                @if ($index < 3)
-                                    <div class="row custom-table" style="border: none">
-                                        <div class="col">
-                                            <li class="d-flex align-items-center mt-1 link-black" style="height: 30px">
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="me-2" viewBox="0 0 16 16" width="18" height="18"><path d="M10.561 8.073a6.005 6.005 0 0 1 3.432 5.142.75.75 0 1 1-1.498.07 4.5 4.5 0 0 0-8.99 0 .75.75 0 0 1-1.498-.07 6.004 6.004 0 0 1 3.431-5.142 3.999 3.999 0 1 1 5.123 0ZM10.5 5a2.5 2.5 0 1 0-5 0 2.5 2.5 0 0 0 5 0Z"></path></svg>
-                                                <label label class="fs-6 fw-normal" for="">{{$workspace->name}}</label>
-                                            </li>
-                                        </div>
-                                    </div>
-                                @endif
-                            @endforeach
-                        </ul>
-                    </div>
-                    <div class="row align-items-end mt-auto" style="border-top: #F2F2F2 solid 2px;">
-                        <a href="" class="link-grey">View all workspaces <i style="font-size: 12px;" class="fa-solid fa-arrow-right"></i></a>
+                    <div class="col-5 d-flex align-items-center p-1" style="height: 40px;">
+                        <button class="m-auto rounded-1 w-100 btn btn-secondary pt-1" onclick="toggleCreateWorkspacePane('open')">Create Workspace</button>
                     </div>
                 </div>
-                <!-- Create Workspace Pane -->
-                <form action="{{ route('home.store') }}" method="POST" enctype="multipart/form-data" class="create-workspace flex-column justify-content-start pane p-3 needs-validation" id="form-create-workspace" style="width: 300px; margin-left: 425px;" novalidate>
-                    @csrf
-                    <label for="" style="font-size: 20px; font-weight: 500;">Create your workspace</label>
-                    <label class="mt-1" style="color: #808080; font-size: 14px; font-weight: 400;">Name</label>
-                    <input type="text" class="textfield p-1 form-control" name="workspace-input-name" id="workspace-input-name" required>
-                    <div class="invalid-feedback">Please fill your workspace name.</div>
-                    <div class="d-flex flex-row mt-2 align-self-end" style="width: 140px;" >
-                        <div class="col py-1">
-                            <button class="btn btn-secondary" type="button" onclick="toggleCreateWorkspacePane('close')">Cancel</button>
-                        </div>
-                        <div class="col py-1 ps-1">
-                            <button class="btn btn-primary" type="submit">Create</button>
-                        </div>
+                <div class="row">
+                    <label style="color: #808080; font-size: 14px; font-weight: 500;">Recently visited</label>
+                    <ul style="list-style-type:none;">
+                        @foreach ($workspaces as $index => $workspace)
+                            @if ($index < 3)
+                                <div class="row custom-table" style="border: none">
+                                    <div class="col">
+                                        <li class="d-flex align-items-center mt-1 link-black" style="height: 30px">
+                                            <a class="link-black" style="width: 100%; height:100%" href="{{ route('workspace.show', ['workspace' => $workspace->id]) }}">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="me-2" viewBox="0 0 16 16" width="18" height="18"><path d="M10.561 8.073a6.005 6.005 0 0 1 3.432 5.142.75.75 0 1 1-1.498.07 4.5 4.5 0 0 0-8.99 0 .75.75 0 0 1-1.498-.07 6.004 6.004 0 0 1 3.431-5.142 3.999 3.999 0 1 1 5.123 0ZM10.5 5a2.5 2.5 0 1 0-5 0 2.5 2.5 0 0 0 5 0Z"></path></svg>
+                                                <label label class="fs-6 fw-normal" for="">{{$workspace->name}}</label>
+                                            </a>
+                                        </li>
+                                    </div>
+                                </div>
+                            @endif
+                        @endforeach
+                    </ul>
+                </div>
+                <div class="row align-items-end mt-auto" style="border-top: #F2F2F2 solid 2px;">
+                    <a href="" class="link-grey">View all workspaces <i style="font-size: 12px;" class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <!-- Create Workspace Pane -->
+            <form action="{{ route('home.store') }}" method="POST" enctype="multipart/form-data" class="create-workspace flex-column justify-content-start pane p-3 needs-validation" id="form-create-workspace" style="width: 300px; margin-left: 425px;" novalidate>
+                @csrf
+                <label for="" style="font-size: 20px; font-weight: 500;">Create your workspace</label>
+                <label class="mt-1" style="color: #808080; font-size: 14px; font-weight: 400;">Name</label>
+                <input type="text" class="textfield p-1 form-control" name="workspace-input-name" id="workspace-input-name" required>
+                <div class="invalid-feedback">Please fill your workspace name.</div>
+                <div class="d-flex flex-row mt-2 align-self-end" style="width: 140px;" >
+                    <div class="col py-1">
+                        <button class="btn btn-secondary" type="button" onclick="toggleCreateWorkspacePane('close')">Cancel</button>
                     </div>
-                </form>
-            </div>
-            <div class="dropdown pe-5 fs-5">
-                <button class="btn btn-white dropdown d-flex align-items-center" onclick="toggleDropdownProfile()" style="height: 50px;" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="https://media.discordapp.net/attachments/994685233087643719/1215271120127791114/77ed449a829d201a7940b0f98d49ca5a3cf43dd9.jpg?ex=65fc246d&is=65e9af6d&hm=cc53b20e7bac20faa1f57f479c85b3a5c19f166a5ece6b0da943736fc79cb017&=&format=webp" alt="" width="40" height="40" class="rounded-circle me-2">
-                    <span class="fs-5 fw-normal">{{Auth::user()->name}}</span>
-                    <span id="dropdown-profile-icon" class="material-icons">expand_more</span>
-                </button>
-                <ul class="dropdown-menu pane" aria-labelledby="dropdownMenuButton1">
-                    <li><a class="dropdown-item" href="#">View Profile</a></li>
-                    <li>
-                        <form action="{{route('logout')}}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <button class="dropdown-item" type="submit">Sign Out</button>
-                        </form>
-                    </li>
-                  </ul>
-            </div>
-        </nav>
-        @if ($message = Session::get('success'))
-        <div class="alert alert-success">Workspace has been created</div>
-        @endif
+                    <div class="col py-1 ps-1">
+                        <button class="btn btn-primary" type="submit">Create</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="dropdown pe-5 fs-5">
+            <button class="btn btn-white dropdown d-flex align-items-center" onclick="toggleDropdownProfile()" style="height: 50px;" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="https://media.discordapp.net/attachments/994685233087643719/1215271120127791114/77ed449a829d201a7940b0f98d49ca5a3cf43dd9.jpg?ex=65fc246d&is=65e9af6d&hm=cc53b20e7bac20faa1f57f479c85b3a5c19f166a5ece6b0da943736fc79cb017&=&format=webp" alt="" width="40" height="40" class="rounded-circle me-2">
+                <span class="fs-5 fw-normal">{{Auth::user()->name}}</span>
+                <span id="dropdown-profile-icon" class="material-icons">expand_more</span>
+            </button>
+            <ul class="dropdown-menu pane" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item" href="#">View Profile</a></li>
+                <li>
+                    <form action="{{route('logout')}}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button class="dropdown-item" type="submit">Sign Out</button>
+                    </form>
+                </li>
+              </ul>
+        </div>
+    </nav>
+    @if ($message = Session::get('success'))
+    <div class="alert alert-success">Workspace has been created</div>
+    @endif
         <!-- Start Content -->
         <section class="content d-flex flex-row" style="min-height: 1200px; overflow-y: auto;">
             <!-- Collection list -->
             <div style="width: 280px; border-right: #f2f2f2 solid 1px;">
                 <div class="d-flex align-items-center ps-4" style="height: 55px; border-bottom: #f2f2f2 solid 1px;">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="icon" viewBox="0 0 16 16" width="18" height="18"><path d="M10.561 8.073a6.005 6.005 0 0 1 3.432 5.142.75.75 0 1 1-1.498.07 4.5 4.5 0 0 0-8.99 0 .75.75 0 0 1-1.498-.07 6.004 6.004 0 0 1 3.431-5.142 3.999 3.999 0 1 1 5.123 0ZM10.5 5a2.5 2.5 0 1 0-5 0 2.5 2.5 0 0 0 5 0Z"></path></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16" width="18" height="18"><path d="M10.561 8.073a6.005 6.005 0 0 1 3.432 5.142.75.75 0 1 1-1.498.07 4.5 4.5 0 0 0-8.99 0 .75.75 0 0 1-1.498-.07 6.004 6.004 0 0 1 3.431-5.142 3.999 3.999 0 1 1 5.123 0ZM10.5 5a2.5 2.5 0 1 0-5 0 2.5 2.5 0 0 0 5 0Z"></path></svg>
                     <p class="mt-3 ms-2">{{$selectedWorkspace->name}}</p>
                 </div>
                 <div class="container">

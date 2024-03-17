@@ -26,7 +26,9 @@ Route::resource('reset-password',ResetPasswordController::class);
 |
 */
 
+
 Route::group(['middleware' => 'guest'],function(){
+
     Route::get('/register',[AuthController::class,'register'])->name('register');
     Route::post('/register',[AuthController::class,'registerPost'])->name('register');
 
@@ -35,6 +37,7 @@ Route::group(['middleware' => 'guest'],function(){
 });
 
 Route::group(['middleware' => 'auth'],function(){
+    Route::get('/', [HomepageController::class, 'index'])->name('home.index');
     Route::resource('home',HomepageController::class);
     Route::delete('/logout',[AuthController::class,'logout'])->name('logout');
 });
