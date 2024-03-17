@@ -108,40 +108,59 @@
 
         .nav-tabs {
             background-color: #EF5B25;
-            height: auto;
-            border: none;
         }
 
         .nav-tabs .nav-items {
+            width: 220px;
+            height: 100%;
+            display: flex;
+            flex-direction: row;
+            background-color: #EF5B25;
+            transition: all 0.3s;
+        }
+        .nav-tabs .nav-items:hover {
+            background-color: #db5524;
+            transition: all 0.3s;
+        }
+        .nav-items .nav-link {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            width: 220px;
-        }
-
-        .nav-tabs .nav-link {
-            display: flex;
-            align-items: center;
+            padding-left: 35%;
+            color: #fff;
             width: 100%;
             height: 100%;
-            color: #fff;
             border-radius: 0%;
-            border-right: #fff solid 2px;
-            border-left: none;
-            border-top: none;
-            border-bottom: none;
-            background-color: #EF5B25;
-        }
-        .nav-tabs .nav-link:hover {
-            background-color: #d65121;
-
-        }
-        .nav-tabs .nav-link.active{
-            background-color: #fff;
             border: none;
-            border-bottom: #EF5B25 solid 2px;
+            border-right: #fff 2px solid;
+            transition: all 0.3s;
         }
-
+        .nav-tabs .nav-link.active {
+            background-color: #ffffff;
+            border-bottom: #EF5B25 solid 2px;
+            border-right: #EF5B25 solid 2px;
+            transition: all 0.3s
+        }
+        .nav-tabs .nav-items .nav-link button .material-symbols-outlined {
+            font-weight: 400;
+            font-size: 20px;
+            color: #ffffff;
+        }
+        .nav-tabs .nav-items .nav-link.active button .material-symbols-outlined {
+            color: #808080;
+        }
+        .add-nav-items{
+            background-color: transparent;
+            border: none;
+            color: #fff;
+            transition: all 0.3s;
+        }
+        .add-nav-items:hover{
+            background-color: transparent;
+            border: none;
+            color: #808080;
+            transition: all 0.3s;
+        }
     </style>
 </head>
 <body class="d-flex flex-row">
@@ -226,18 +245,34 @@
                     </div>
                 </div>
             </div>
+
             <!-- Main Content -->
             <div class="" style="width: 100%;">
                 <ul class="nav nav-tabs" style="height: 55px;">
                     <li class="nav-items">
-                        <a class="nav-link active" data-bs-toggle="tab" href="#home">home</a>
+                        <a class="nav-link active" data-bs-toggle="tab" href="#home">home
+                            <button class="btn d-flex justify-content-center align-items-center p-1">
+                                <span class="material-symbols-outlined">close</span>
+                            </button>
+                        </a>
                     </li>
                     <li class="nav-items">
-                        <a class="nav-link" data-bs-toggle="tab" href="#profile">profile</a>
+                        <a class="nav-link" data-bs-toggle="tab" href="#profile">profile
+                            <button class="btn d-flex justify-content-center align-items-center p-1">
+                                <span class="material-symbols-outlined">close</span>
+                            </button>
+                        </a>
                     </li>
                     <li class="nav-items">
-                        <a class="nav-link" data-bs-toggle="tab" href="#contract">contract</a>
+                        <a class="nav-link" data-bs-toggle="tab" href="#contract">contract
+                            <button class="btn d-flex justify-content-center align-items-center p-1">
+                                <span class="material-symbols-outlined">close</span>
+                            </button>
+                        </a>
                     </li>
+                    <button class="d-flex justify-content-center align-items-center p-2 add-nav-items">
+                        <span class="material-symbols-outlined">add</span>
+                    </button>
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane active" id="home">
