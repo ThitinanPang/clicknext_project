@@ -3,319 +3,417 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" integrity="sha384-4LISF5TTJX/fLmGSxO53rV4miRxdg84mZsxmO8Rx5jGtp/LbrixFETvWa5a6sESd" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <title>Document</title>
     <style>
-        .sidebar {
-            position: fixed;
-            left: 0;
-            width: 90px;
-            height: 100%;
+        *{
+            font-family: "Roboto", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        .primary {
             background-color: #EF5B25;
-            border-right: 1px solid #dee2e6;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            color: #fff;
         }
-        .main {
-            padding-left: 90px;
+        .secondary {
+            background-color: #F2F2F2;
+            color: black;
         }
-
-        .main-content {
-            padding: 20px;
+        .debug {
+            border: 1px solid red;
         }
-        .navbar{
+        .btn-menu {
+            color: #fff;
+            width: 70px;
             height: 70px;
-            border-bottom: 1px solid #F2F2F2;
+            background-color: transparent;
+            list-style: none;
+            justify-content: center;
+            border-radius: 5px;
+            font-size: 14px;
         }
-        .content{
-            margin-top: 10px;
+        .btn-menu:hover{
+            background-color: #ea9c80;
+            width: 70px;
+            height: 70px;
+            color: #fff;
         }
-        table {
-            margin-top: 20px;
-            width: 100%;
-        }
-        table td {
-            padding: 10px;
-            border-top: 1px solid #F2F2F2;
-            text-align: center;
-            font-size: 16px;
-            font-weight: 500;
-        }
-        .table-icon {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            margin-right: 10px;
-        }
-        .workspace-name{
-            display: flex;
-            font-size: 16px;
-            font-weight: 400;
-        }
-        .profile{
-            display: flex;
-            align-items: center;
-            font-size: 16px;
-            font-weight: 400;
-        }
-
         .dropdown{
-            display: flex;
-            align-items: baseline;
-
+            color: #000;
+            position: relative;
+            display: inline-block;
         }
-        .td-80 {
-            width: 80%;
-        }
-        .td-20 {
-            width: 20%;
-        }
-        .navbar {
-            justify-content: space-between;
-            padding: 0 60px 0 10px;
-        }
-        .btn-workspace {
-            font-size: 24px;
-        }
-        #workspace-container {
+        .dropdown-content {
             display: none;
             position: absolute;
-            background-color: #fff;
-            width: 400px;
-            padding: 10px;
-            margin: 2px 0 0 2px;
+            background-color: #f9f9f9;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
             z-index: 1;
-            box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.1);
-            border-radius: 5px;
+        }
+        .dropdown:focus .dropdown-content {
+            display: block;
         }
 
-        .workspace-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+        .navbar {
+            border-bottom: #F2F2F2 solid 1px;
         }
 
+        tr {
+            border-top: #F2F2F2 solid 1px;
+        }
 
-        .search {
-            width: auto;
-            height: 35px;
-            border: 1px solid #F2F2F2;
-            border-radius: 5px;
+        i.fa {
+            position: absolute;
+            top: 6px;
+            left: 10px;
+            color: #808080;
             font-size: 16px;
-            padding: 8px;
+            z-index: 9999;
         }
+        .form-control {
+            position: relative;
+            padding-left: 30px !important;
+        }
+        .pain {
 
+        }
         .textfield {
             width: auto;
             height: 30px;
             border: 1px solid #F2F2F2;
             border-radius: 5px;
             font-size: 16px;
-            padding: 8px;
-        }
-        .workspace-body {
-            margin-top: 10px;
+            padding: 1px;
         }
 
-        .workspace-body .workspace-name{
-            color: #000;
-            margin: 15px 0 0 20px;
-            font-weight: 400;
+        .nav-tabs {
+            background-color: #EF5B25;
         }
-        .btn-link {
+
+        .nav-tabs .nav-items {
+            width: 220px;
+            height: 100%;
+            display: flex;
+            flex-direction: row;
+            background-color: #EF5B25;
+            transition: all 0.3s;
+        }
+        .nav-tabs .nav-items:hover {
+            background-color: #d45323;
+            transition: all 0.3s;
+        }
+        .nav-items .nav-link {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-left: 35%;
+            color: #fff;
+            width: 100%;
+            height: 100%;
+            border-radius: 0%;
+            border: none;
+            border-right: #fff 2px solid;
+            transition: all 0.3s;
+        }
+        .nav-tabs .nav-link.active {
+            color: #000;
+            background-color: #ffffff;
+            border-bottom: #EF5B25 solid 2px;
+            border-right: #EF5B25 solid 2px;
+            transition: all 0.3s
+        }
+        .nav-tabs .nav-items .nav-link button .material-symbols-outlined {
+            font-weight: 400;
+            font-size: 20px;
+            color: #ffffff;
+        }
+        .nav-tabs .nav-items .nav-link.active button .material-symbols-outlined {
+            color: #808080;
+        }
+        .add-nav-items{
+            background-color: transparent;
+            border: none;
+            color: #fff;
+            transition: all 0.3s;
+        }
+        .add-nav-items:hover{
             background-color: transparent;
             border: none;
             color: #808080;
-            font-size: 14px;
-            font-weight: 400;
-            text-decoration: none;
+            transition: all 0.3s;
         }
 
-        .workspace-footer {
-            border-top: 1px solid #f2f2f2;
-            align-items: center;
-            padding-top: 5px;
-        }
-
-        .label-header {
-            font-size: 20px;
-            font-weight: 600;
-
-        }
-        .label-description {
-            font-size: 12px;
-            font-weight: 500;
-            color: #808080;
-        }
-        .btn-primary {
-            background-color: #EF5B25;
+        .btn-collapse{
+            background-color: #ffffff;
+            border-radius: 0%;
             border: none;
-            border-radius: 5px;
-            margin-left: 5px;
+            transition: all 0.3s;
         }
-        .btn-primary:hover {
-            background-color: #cc5022;
-            border: none;
+        .btn-collapse:hover{
+            background-color: #f2f2f2;
+            transition: all 0.3s;
         }
-        .btn-primary:focus {
-            background-color: #cc5022;
-            border: none;
-        }
-        .btn-secondary {
-            height: 35px;
-            width: auto;
-            background-color: #F2F2F2;
-            border-radius: 5px;
-            color: black;
-            font-size: 16px;
-            border: none;
-            border-radius: 5px;
-        }
-        .btn-secondary:hover {
-            background-color: #dcdcdc;
-            color: #000;
-        }
-        .btn-secondary:focus {
-            background-color: #dcdcdc;
-            color: #000;
-        }
-
-        #workspace-create-pane {
-            width: 300px;
-            display: none;
-            position: absolute;
+        .navbar-nav{
             background-color: #fff;
-            padding: 10px;
-            margin: 2px 0 0 405px;
-            z-index: 1;
-            box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.1);
-            border-radius: 5px;
+            transition: all 0.3s;
+            padding-left: 55px;
         }
-        #workspace-create-pane .textfield {
-            width: 280px;
+        .navbar-nav:hover{
+            background-color: #f2f2f2;
+            transition: all 0.3s;
+            cursor: pointer;
         }
 
-        #workspace-create-pane .container{
-            display: flex;
-            margin-top: 10px;
-            justify-content: flex-end;
-            align-items: center;
-        }
     </style>
 </head>
-<body>
-
-     <!-- Sidebar -->
-     <div class="sidebar">
-        <!-- Content sidebar -->
-        <div class="container" style="margin: 10px;">
-            <img src="https://media.discordapp.net/attachments/994685233087643719/1215261876972429323/circle_logo.png?ex=65fc1bd1&is=65e9a6d1&hm=2ca5c2f0daef63d683772b7d936e3398948ccc82dff64fe57dcca0eedd499900&=&format=webp&quality=lossless" alt="clicknext-icon" width="65px">
-        </div>
-    </div>
-
-    <!-- Main Content -->
-    <div class="main">
-        <!-- Navbar section -->
-        <div class="navbar">
-            <div class="col-auto">
-                <button class="btn btn-workspace" type="button" id="workspace-switch" onclick="toggleWorkspace()">
-                    <i class="fa-solid fa-border-all" style="font-size: 24px;"></i>
-                     <label for="">Workspaces</label>
-                    <i class="fa-solid fa-angle-down" id="workspace-arrow" style="font-size: 16px;"></i>
+<body class="d-flex flex-row">
+     <!-- Start Sidebar -->
+     <aside class="d-flex flex-shrink-0 flex-column primary" style="width:5.625rem; min-height: 100vh; overflow-y: auto;">
+        <ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
+            <a href="#" class="mt-2 link-body-emphasis text-decoration-none" data-bs-toggle="dropdown" aria-expanded="false">
+                <img width="50px" src="https://media.discordapp.net/attachments/994685233087643719/1215261876972429323/circle_logo.png?ex=65fc1bd1&is=65e9a6d1&hm=2ca5c2f0daef63d683772b7d936e3398948ccc82dff64fe57dcca0eedd499900&=&format=webp&quality=lossless" alt="clicknext-logo">
+            </a>
+            <a href="#" class="mt-3 link-body-emphasis text-decoration-none d-flex justify-content-center text-align-center" data-bs-toggle="dropdown" aria-expanded="false">
+                <li class="btn-menu d-flex flex-column"><span class="material-symbols-outlined" style="font-size: 36px;">folder</span>
+                    <label class="fw-normal" for="">Collections</label>
+                </li>
+            </a>
+            <a href="#" class="mt-3 link-body-emphasis text-decoration-none d-flex justify-content-center text-align-center" data-bs-toggle="dropdown" aria-expanded="false">
+                <li class="btn-menu d-flex flex-column"><span class="material-symbols-outlined" style="font-size: 36px;">manage_history</span>
+                    <label class="fw-normal" for="">History</label>
+                </li>
+            </a>
+            <a href="#" class="mt-3 link-body-emphasis text-decoration-none d-flex justify-content-center text-align-center" data-bs-toggle="dropdown" aria-expanded="false">
+                <li class="btn-menu d-flex flex-column"><span class="material-symbols-outlined" style="font-size: 36px;">delete</span>
+                    <label class="fw-normal" for="">Trash</label>
+                </li>
+            </a>
+        </ul>
+    </aside>
+    <!-- End Sidebar -->
+    <!-- Start Main -->
+    <div class="d-flex flex-column container-fluid main p-0">
+        <!-- Start Navbar -->
+        <nav class="ps-2 d-flex navbar navbar-light bg-white sticky-top">
+            <div class="dropdown">
+                <input type="checkbox" id="dropdown-nav-toggle" class="dropdown-nav-toggle visually-hidden">
+                <button class="btn btn-white dropdown d-flex align-items-center" style="height: 50px;" onclick="toggleDropdownNav(),toggleCreateWorkspacePane('close')">
+                    <span class="material-symbols-outlined">grid_view</span>
+                    <span class="fs-5 fw-normal">Workspaces</span>
+                    <span id="dropdown-nav-icon" class="material-icons">expand_more</span>
                 </button>
-            </div>
-
-
-            <div class="col-auto">
-                <button class="btn btn-workspace" type="button" id="profile-switch" onclick="toggleProfile()">
-                    <img src="https://media.discordapp.net/attachments/994685233087643719/1215271120127791114/77ed449a829d201a7940b0f98d49ca5a3cf43dd9.jpg?ex=65fc246d&is=65e9af6d&hm=cc53b20e7bac20faa1f57f479c85b3a5c19f166a5ece6b0da943736fc79cb017&=&format=webp" alt="" class="table-icon">
-                    <label for="">Sweed</label>
-                    <i class="fa-solid fa-angle-down" id="profile-arrow" style="font-size: 16px;"></i>
-                </button>
-            </div>
-        </div>
-        <!--Workspace Container-->
-        <div id="workspace-container">
-            <div class="workspace-header">
-                <input style="font-family: Arial, FontAwesome;" type="search" name="searh-workspace" id="search-workspace" class="search" placeholder="&#xf002; Search workspaces">
-                <button class="btn btn-secondary" type="button" id="create-workspace-switch" onclick="btnCreateWorkspace('open')">Create Workspace</button>
-            </div>
-            <div class="workspace-body">
-                <label for="" class="label-description">Recently visited</label>
-                <table>
-
-                    @foreach ($workspaces as $workspace)
-                    <tr>
-                        <div class="workspace-name">
-                            <i class="fa-regular fa-user" style="margin-right: 10px;"></i>
-                            <label for="">{{$workspace->name}}</label>
+                <!-- Dropdown Menu -->
+                <div class="dropdown-content flex-column container pane" style=" width: 420px; height: 230px;">
+                    <div class="row align-items-start p-2">
+                        <div class="col-7 d-flex align-items-center p-1" style="height: 40px;">
+                            <div class="input-group">
+                                <i class="fa fa-search" style="font-size: 14px; margin-top: 2px;"></i>
+                                <input class="textfield" style="padding-left: 30px; width: 100%; border-radius: 5px; font-size: 14px;" type="search" name="" id=""  placeholder="Search workspaces">
+                            </div>
                         </div>
-                    </tr>
-                    @endforeach
-
-                </table>
-            </div>
-            <div class="workspace-footer">
-                <button class="btn-link">
-                    View all workspaces
-                    <i class="fa-solid fa-arrow-right" style="font-size: 10px;"></i>
-                </button>
-            </div>
-        </div>
-        <div id="workspace-create-pane">
-            <form action="{{ route('home.store') }}" method="POST" enctype="multipart/form-data" id="form-create-workspace">
-                @csrf
-                <label for="workspace-input-name" class="label-header">Create your workspace</label>
-                <br>
-                <label for="workspace-input-name" class="label-description">Name</label>
-                <br>
-                <input class="textfield" type="text" name="workspace-input-name" id="workspace-input-name">
-                <div class="container">
-                    <button type="button" class="btn btn-secondary" onclick="btnCreateWorkspace()">Cancel</button>
-                    <button type="submit" class="btn btn-primary" form="form-create-workspace">Create</button>
+                        <div class="col-5 d-flex align-items-center p-1" style="height: 40px;">
+                            <button class="m-auto rounded-1 w-100 btn btn-secondary pt-1" onclick="toggleCreateWorkspacePane('open')">Create Workspace</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label style="color: #808080; font-size: 14px; font-weight: 500;">Recently visited</label>
+                        <ul style="list-style-type:none;">
+                            @foreach ($workspaces as $index => $workspace)
+                                @if ($index < 3)
+                                    <div class="row custom-table" style="border: none">
+                                        <div class="col">
+                                            <li class="d-flex align-items-center mt-1 link-black" style="height: 30px">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="me-2" viewBox="0 0 16 16" width="18" height="18"><path d="M10.561 8.073a6.005 6.005 0 0 1 3.432 5.142.75.75 0 1 1-1.498.07 4.5 4.5 0 0 0-8.99 0 .75.75 0 0 1-1.498-.07 6.004 6.004 0 0 1 3.431-5.142 3.999 3.999 0 1 1 5.123 0ZM10.5 5a2.5 2.5 0 1 0-5 0 2.5 2.5 0 0 0 5 0Z"></path></svg>
+                                                <label label class="fs-6 fw-normal" for="">{{$workspace->name}}</label>
+                                            </li>
+                                        </div>
+                                    </div>
+                                @endif
+                            @endforeach
+                        </ul>
+                    </div>
+                    <div class="row align-items-end mt-auto" style="border-top: #F2F2F2 solid 2px;">
+                        <a href="" class="link-grey">View all workspaces <i style="font-size: 12px;" class="fa-solid fa-arrow-right"></i></a>
+                    </div>
                 </div>
-            </form>
-        </div>
+                <!-- Create Workspace Pane -->
+                <form action="{{ route('home.store') }}" method="POST" enctype="multipart/form-data" class="create-workspace flex-column justify-content-start pane p-3 needs-validation" id="form-create-workspace" style="width: 300px; margin-left: 425px;" novalidate>
+                    @csrf
+                    <label for="" style="font-size: 20px; font-weight: 500;">Create your workspace</label>
+                    <label class="mt-1" style="color: #808080; font-size: 14px; font-weight: 400;">Name</label>
+                    <input type="text" class="textfield p-1 form-control" name="workspace-input-name" id="workspace-input-name" required>
+                    <div class="invalid-feedback">Please fill your workspace name.</div>
+                    <div class="d-flex flex-row mt-2 align-self-end" style="width: 140px;" >
+                        <div class="col py-1">
+                            <button class="btn btn-secondary" type="button" onclick="toggleCreateWorkspacePane('close')">Cancel</button>
+                        </div>
+                        <div class="col py-1 ps-1">
+                            <button class="btn btn-primary" type="submit">Create</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="dropdown pe-5 fs-5">
+                <button class="btn btn-white dropdown d-flex align-items-center" onclick="toggleDropdownProfile()" style="height: 50px;" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="https://media.discordapp.net/attachments/994685233087643719/1215271120127791114/77ed449a829d201a7940b0f98d49ca5a3cf43dd9.jpg?ex=65fc246d&is=65e9af6d&hm=cc53b20e7bac20faa1f57f479c85b3a5c19f166a5ece6b0da943736fc79cb017&=&format=webp" alt="" width="40" height="40" class="rounded-circle me-2">
+                    <span class="fs-5 fw-normal">{{Auth::user()->name}}</span>
+                    <span id="dropdown-profile-icon" class="material-icons">expand_more</span>
+                </button>
+                <ul class="dropdown-menu pane" aria-labelledby="dropdownMenuButton1">
+                    <li><a class="dropdown-item" href="#">View Profile</a></li>
+                    <li>
+                        <form action="{{route('logout')}}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button class="dropdown-item" type="submit">Sign Out</button>
+                        </form>
+                    </li>
+                  </ul>
+            </div>
+        </nav>
         @if ($message = Session::get('success'))
-            <div class="alert alert-success">{{$message}}</div>
+        <div class="alert alert-success">Workspace has been created</div>
         @endif
-        @error('workspace-input-name')
-            <div class="alert alert-danger">{{$message}}</div>
-        @enderror
-        <section>
-            <!-- Section Start-->
-           
+        <!-- Start Content -->
+        <section class="content d-flex flex-row" style="min-height: 1200px; overflow-y: auto;">
+            <!-- Collection list -->
+            <div style="width: 280px; border-right: #f2f2f2 solid 1px;">
+                <div class="d-flex align-items-center ps-4" style="height: 55px; border-bottom: #f2f2f2 solid 1px;">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="icon" viewBox="0 0 16 16" width="18" height="18"><path d="M10.561 8.073a6.005 6.005 0 0 1 3.432 5.142.75.75 0 1 1-1.498.07 4.5 4.5 0 0 0-8.99 0 .75.75 0 0 1-1.498-.07 6.004 6.004 0 0 1 3.431-5.142 3.999 3.999 0 1 1 5.123 0ZM10.5 5a2.5 2.5 0 1 0-5 0 2.5 2.5 0 0 0 5 0Z"></path></svg>
+                    <p class="mt-3 ms-2">My Workspaces</p>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col d-flex align-items-center ps-0 py-2">
+                            <button class="btn d-flex justify-content-center align-items-center p-0 m-2">
+                                <span style="color: #808080;" class="material-symbols-outlined">add</span>
+                            </button>
+                            <div class="input-group">
+                                <i class="fa fa-search" style="font-size: 14px; margin-top: 2px;"></i>
+                                <input class="textfield" style="padding-left: 30px; width: 100%; border-radius: 5px; font-size: 14px;" type="search" name="" id=""  placeholder="Search collections">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Collections List -->
+                    <div class="row">
+                        <div class="col p-0">
+                            <button class="btn-collapse dropdown d-flex align-items-center" style="height: 30px; width: 100%;" type="button" data-bs-toggle="collapse" data-bs-target="#collection" aria-expanded="false" aria-controls="collection">
+                                <span class="material-symbols-outlined me-2">chevron_right </span>
+                                <span class="fs-6" style="font-weight: 500">New Collection</span>
+                            </button>
+                            <div class="collapse" id="collection">
+                                <div class="container p-0 ">
+                                    <button class="btn-collapse dropdown d-flex align-items-center ps-4" style="height: 30px; width: 100%;" type="button" data-bs-toggle="collapse" data-bs-target="#file" aria-expanded="false" aria-controls="file">
+                                        <span class="material-symbols-outlined me-2" style="font-size: 22px;">chevron_right </span>
+                                        <span class="" style="font-size: 14px;">Untitled-1</span>
+                                    </button>
+                                    <div class="collapse"  id="file">
+                                        <ul class="navbar-nav">
+                                            <li><a href=""><label class="me-2" style="font-size: 12px;  font-weight: 500;" for="">GET</label><label for="" style="font-size: 12px; color: #000;">api/user/4</label></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="" style="width: 100%;">
+                <!-- Nav Tabs -->
+                <ul class="nav nav-tabs" style="height: 55px;">
+                    <li class="nav-items">
+                        <a class="nav-link active fst-italic" data-bs-toggle="tab" href="#home">home
+                            <button class="btn d-flex justify-content-center align-items-center p-1">
+                                <span class="material-symbols-outlined">close</span>
+                            </button>
+                        </a>
+                    </li>
+                    <li class="nav-items">
+                        <a class="nav-link fst-italic" data-bs-toggle="tab" href="#profile">profile
+                            <button class="btn d-flex justify-content-center align-items-center p-1">
+                                <span class="material-symbols-outlined">close</span>
+                            </button>
+                        </a>
+                    </li>
+                    <li class="nav-items">
+                        <a class="nav-link fst-italic" data-bs-toggle="tab" href="#contract">contract
+                            <button class="btn d-flex justify-content-center align-items-center p-1">
+                                <span class="material-symbols-outlined">close</span>
+                            </button>
+                        </a>
+                    </li>
+                    <button class="d-flex justify-content-center align-items-center p-2 add-nav-items">
+                        <span class="material-symbols-outlined">add</span>
+                    </button>
+                </ul>
+                <!-- Tabs Content -->
+                <div class="tab-content">
+                    <div class="tab-pane active" id="home">
+                        <div class="row">
+                            <div class="col">
+                                <h3>Home</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="profile">
+                        <div class="row">
+                            <div class="col">
+                                <h3>profile</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="contract">
+                        <div class="row">
+                            <div class="col">
+                                <h3>contract</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
+        <!-- End Content -->
     </div>
+    <!-- End Main -->
     <script>
-         function toggleWorkspace() {
-            var workspaceContainer = document.getElementById("workspace-container");
-            var workspaceArrowIcon = document.getElementById("workspace-arrow");
-            var workspaceCreatepane = document.getElementById("workspace-create-pane");
-            // Toggle the display property
-            if (workspaceContainer.style.display === "none") {
-                workspaceContainer.style.display = "block";
-                workspaceArrowIcon.className = "fa-solid fa-angle-up";
-            } else {
-                workspaceContainer.style.display = "none";
-                workspaceCreatepane.style.display = "none";
-                workspaceArrowIcon.className = "fa-solid fa-angle-down";
-            }
-        }
-        function btnCreateWorkspace(action) {
-            var workspaceCreatepane = document.getElementById("workspace-create-pane");
-            var formCreateWorkspace = document.getElementById("form-create-workspace");
-            formCreateWorkspace.reset();
-            if (action === "open") {
-                workspaceCreatepane.style.display = "block";
-            } else {
-                workspaceCreatepane.style.display = "none";
-            }
-        }
+        document.addEventListener('DOMContentLoaded', function() {
+        const btnCollapse = document.querySelectorAll('.btn-collapse');
+
+        btnCollapse.forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                const chevron = this.querySelector('.material-symbols-outlined');
+                    if (chevron.textContent.trim() === 'chevron_right') {
+                        chevron.textContent = 'expand_more';
+                    } else {
+                        chevron.textContent = 'chevron_right';
+                    }
+                });
+            });
+        });
+        document.addEventListener('DOMContentLoaded', function() {
+            const labels = document.querySelectorAll('.navbar-nav li label:first-child');
+
+            labels.forEach(function(label) {
+                const labelText = label.textContent.trim();
+                if (labelText === 'GET') {
+                    label.style.color = '#34A853';
+                } else if (labelText === 'POST') {
+                    label.style.color = '#FF0000';
+                }
+            });
+        });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-
 </body>
 </html>
