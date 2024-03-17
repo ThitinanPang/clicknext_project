@@ -19,6 +19,9 @@
             font-style: normal;
         }
 
+        body{
+            overflow-x: hidden;
+        }
         .primary {
             background-color: #EF5B25;
             color: #fff;
@@ -39,8 +42,16 @@
             justify-content: center;
             border-radius: 5px;
             font-size: 14px;
+            transition: all 0.3s;
         }
         .btn-menu:hover{
+            background-color: #ea9c80;
+            width: 70px;
+            height: 70px;
+            color: #fff;
+            transition: all 0.3s;
+        }
+        .btn-menu:focus{
             background-color: #ea9c80;
             width: 70px;
             height: 70px;
@@ -58,7 +69,31 @@
             box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
             z-index: 1;
         }
-        .dropdown:focus .dropdown-content {
+        .create-workspace {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+        .dropdown-nav-toggle:checked ~ .dropdown-content{
+            display: flex;
+        }
+
+        .dropdown-menu {
+            border: #000 solid 0px;
+        }
+        .dropdown-item {
+            background: #fff;
+            color:#000;
+            transition: all 0.3s;
+        }
+        .dropdown-item:hover {
+            background: #f2f2f2;
+            color:dodgerblue;
+            transition: all 0.3s;
+        }
+ 	    .dropdown:focus .dropdown-content {
             display: block;
         }
 
@@ -66,8 +101,21 @@
             border-bottom: #F2F2F2 solid 1px;
         }
 
-        tr {
+        .custom-table {
             border-top: #F2F2F2 solid 1px;
+            background-color: white;
+            transition: all 0.3s;
+        }
+        .custom-table:hover {
+            background-color: #f2f2f2;
+            transition: all 0.3s;
+        }
+        td {
+            background-color: transparent;
+            color: #000;
+        }
+        td:hover {
+            color: dodgerblue;
         }
 
         i.fa {
@@ -76,22 +124,141 @@
             left: 10px;
             color: #808080;
             font-size: 16px;
-            z-index: 9999;
+            z-index: 2;
         }
         .form-control {
             position: relative;
             padding-left: 30px !important;
         }
-        .pain {
-
+        .pane {
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.1);
         }
         .textfield {
             width: auto;
             height: 30px;
-            border: 1px solid #F2F2F2;
+            border: 2px solid #F2F2F2;
             border-radius: 5px;
             font-size: 16px;
             padding: 1px;
+        }
+        .textfield:focus {
+            outline: 0;
+            border:dodgerblue solid 2px;
+            transition: all 0.3s;
+        }
+
+        .btn-secondary {
+            background: #f2f2f2;
+            color: #000;
+            font-weight: 500;
+            border: #f2f2f2 solid 0px;
+        }
+        .btn-secondary:hover {
+            background: #eeeeee;
+            color: #000;
+            font-weight: 500;
+            border: #f2f2f2 solid 0px;
+        }
+        .btn-secondary:focus {
+            background: #eeeeee;
+            color: #000;
+            font-weight: 500;
+            border: #f2f2f2 solid 0px;
+        }
+        .btn-primary {
+            background: #EF5B25;
+            color: #fff;
+            font-weight: 500;
+            border: #EF5B25 solid 0px;
+        }
+        .btn-primary:hover {
+            background: #d75120;
+            color: #fff;
+            font-weight: 500;
+            border: #ef5b25 solid 0px;
+        }
+        .btn-primary:focus {
+            background: #d75120;
+            color: #fff;
+            font-weight: 500;
+            border: #EF5B25 solid 0px;
+        }
+        .link-black {
+            color: #000000;
+            transition: all 0.2s;
+            text-decoration: none;
+            height: 35px;
+            display: flex;
+            align-items: center;
+        }
+        .link-black:hover {
+            color: dodgerblue;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+        .link-primary {
+            color: #EF5B25;
+            transition: all 0.2s;
+            text-decoration: none;
+            height: 35px;
+            display: flex;
+            align-items: center;
+        }
+        .link-primary:hover {
+            color: dodgerblue;
+            transition: all 0.2s;
+            cursor: pointer;
+
+        }
+        .link-grey {
+            color: #808080;
+            transition: all 0.2s;
+            text-decoration: none;
+            height: 35px;
+            display: flex;
+            align-items: center;
+        }
+        .link-grey:hover {
+            color: dodgerblue;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+        .line {
+            width: 100%;
+            height: 1px;
+            background-color: #808080;
+            margin: 0 0px;
+        }
+        .cursor {
+            cursor: pointer;
+        }
+        .checkbox {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .checkbox__input {
+            position: absolute;
+            top: -100px;
+            left: -100px;
+        }
+
+        .checkbox__inner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 2px solid #eeeeee;
+            background: transparent no-repeat center;
+        }
+
+        .checkbox__input:checked + .checkbox__inner {
+            border-color: #EF5B25;
+            background-color: #EF5B25;
+            background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg width='14px' height='10px' viewBox='0 0 14 10' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'%3E%3C!-- Generator: Sketch 59.1 (86144) - https://sketch.com --%3E%3Ctitle%3Echeck%3C/title%3E%3Cdesc%3ECreated with Sketch.%3C/desc%3E%3Cg id='Page-1' stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Cg id='ios_modification' transform='translate(-27.000000, -191.000000)' fill='%23FFFFFF' fill-rule='nonzero'%3E%3Cg id='Group-Copy' transform='translate(0.000000, 164.000000)'%3E%3Cg id='ic-check-18px' transform='translate(25.000000, 23.000000)'%3E%3Cpolygon id='check' points='6.61 11.89 3.5 8.78 2.44 9.84 6.61 14 15.56 5.05 14.5 4'%3E%3C/polygon%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            background-size: 14px 10px;
         }
 
         .nav-tabs {
@@ -171,7 +338,6 @@
             transition: all 0.3s;
             cursor: pointer;
         }
-
     </style>
 </head>
 <body class="d-flex flex-row">
@@ -288,7 +454,7 @@
             <div style="width: 280px; border-right: #f2f2f2 solid 1px;">
                 <div class="d-flex align-items-center ps-4" style="height: 55px; border-bottom: #f2f2f2 solid 1px;">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="icon" viewBox="0 0 16 16" width="18" height="18"><path d="M10.561 8.073a6.005 6.005 0 0 1 3.432 5.142.75.75 0 1 1-1.498.07 4.5 4.5 0 0 0-8.99 0 .75.75 0 0 1-1.498-.07 6.004 6.004 0 0 1 3.431-5.142 3.999 3.999 0 1 1 5.123 0ZM10.5 5a2.5 2.5 0 1 0-5 0 2.5 2.5 0 0 0 5 0Z"></path></svg>
-                    <p class="mt-3 ms-2">My Workspaces</p>
+                    <p class="mt-3 ms-2">{{$selectedWorkspace->name}}</p>
                 </div>
                 <div class="container">
                     <div class="row">
@@ -413,6 +579,52 @@
                 }
             });
         });
+        (() => {
+                'use strict'
+
+                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                const forms = document.querySelectorAll('.needs-validation')
+
+                // Loop over them and prevent submission
+                Array.from(forms).forEach(form => {
+                    form.addEventListener('submit', event => {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+
+                    form.classList.add('was-validated')
+                    }, false)
+                })
+                })()
+        function toggleDropdownNav() {
+            var checkbox = document.getElementById('dropdown-nav-toggle');
+            var icon = document.getElementById('dropdown-nav-icon');
+            if (checkbox.checked) {
+                icon.innerHTML = 'expand_more';
+            } else {
+                icon.innerHTML = 'expand_less';
+            }
+            checkbox.checked = !checkbox.checked;
+        }
+        function toggleCreateWorkspacePane(action) {
+            var formCreateWorkspace = document.getElementById("form-create-workspace");
+            formCreateWorkspace.reset();
+            if (action === "open") {
+                formCreateWorkspace.style.display = "flex";
+            } else {
+                formCreateWorkspace.style.display = "none";
+            }
+        }
+        function toggleDropdownProfile() {
+            var icon = document.getElementById('dropdown-profile-icon');
+            var dropdownMenu = document.getElementById('dropdownMenuButton1');
+            if (dropdownMenu.getAttribute('aria-expanded') === 'false') {
+                icon.innerText = 'expand_less';
+            } else {
+                icon.innerText = 'expand_more';
+            }
+        }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
