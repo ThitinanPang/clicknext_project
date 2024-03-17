@@ -24,7 +24,7 @@ class WorkspaceController extends Controller
 
 
         if (!$data['selectedWorkspace']) {
-            return redirect()->route('workspace.index')->with('error', 'Workspace not found');
+            return redirect()->route('home')->with('error', 'Workspace not found');
         }
 
         return view('workspace', $data);
