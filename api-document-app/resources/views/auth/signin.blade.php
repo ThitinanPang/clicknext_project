@@ -347,7 +347,7 @@
                                 <label class="ms-2 cursor" style="font-size: 14px; font-weight: 500;" for="">Sign with Google</label>
                         </a>
                         <p class="mb-4" style="font-size: 14px; font-weight:400; color: #808080;">Don't have an account yet?</p>
-                        <a class="link-primary" href="{{route('register')}}">Create an account</a>
+                        <a class="link-primary" href="{{route('register.index')}}">Create an account</a>
                     </form>
                 </div>
             </div>

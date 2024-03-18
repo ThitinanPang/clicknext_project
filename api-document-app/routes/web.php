@@ -28,10 +28,10 @@ Route::resource('reset-password',ResetPasswordController::class);
 
 Route::group(['middleware' => 'guest'],function(){
 
-    Route::get('/register',[AuthController::class,'register'])->name('register');
+    Route::get('/register',[AuthController::class,'register'])->name('register.index');
     Route::post('/register',[AuthController::class,'registerPost'])->name('register');
 
-    Route::get('/login',[AuthController::class,'login'])->name('login');
+    Route::get('/login',[AuthController::class,'login'])->name('login.index');
     Route::post('/login',[AuthController::class,'loginPost'])->name('login');
 });
 
@@ -40,6 +40,9 @@ Route::group(['middleware' => 'auth'],function(){
     Route::resource('home',HomepageController::class);
     Route::resource('workspace',WorkspaceController::class);
     Route::get('/workspace/{workspace}/add-collection', [WorkspaceController::class, 'add_collection'])->name('workspace.add_collection');
+    Route::get('/workspace/{workspace}/add-file', [WorkspaceController::class, 'add_file'])->name('workspace.add_file');
+    Route::get('/workspace/{workspace}', [WorkspaceController::class, 'index'])->name('workspace.index');
+
     Route::delete('/logout',[AuthController::class,'logout'])->name('logout');
 });
 

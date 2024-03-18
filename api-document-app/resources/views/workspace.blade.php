@@ -360,6 +360,19 @@
             transition: all 0.3s;
             cursor: pointer;
         }
+
+
+        /* New css */
+        .btn-blue {
+            color: #fff;
+            background-color:#097BED;
+            transition: all 0.3s;
+        }
+        .btn-blue:hover {
+            color: #fff;
+            background-color:#086dd3;
+            transition: all 0.3s;
+        }
     </style>
 </head>
 <body class="d-flex flex-row">
@@ -422,7 +435,7 @@
                                 <div class="row custom-table" style="border: none">
                                     <div class="col">
                                         <li class="d-flex align-items-center mt-1 link-black" style="height: 30px">
-                                            <a class="link-black" style="width: 100%; height:100%" href="{{ route('workspace.show', ['workspace' => $workspace->id]) }}">
+                                            <a class="link-black" style="width: 100%; height:100%" href="{{ route('workspace.index', ['workspace' => $workspace->id]) }}">
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="me-2" viewBox="0 0 16 16" width="18" height="18"><path d="M10.561 8.073a6.005 6.005 0 0 1 3.432 5.142.75.75 0 1 1-1.498.07 4.5 4.5 0 0 0-8.99 0 .75.75 0 0 1-1.498-.07 6.004 6.004 0 0 1 3.431-5.142 3.999 3.999 0 1 1 5.123 0ZM10.5 5a2.5 2.5 0 1 0-5 0 2.5 2.5 0 0 0 5 0Z"></path></svg>
                                                 <label label class="fs-6 fw-normal cursor" for="">{{$workspace->name}}</label>
                                             </a>
@@ -499,11 +512,11 @@
                     @foreach ($selectedWorkspace->collections as $collection)
                     <div class="row">
                         <div class="col p-0">
-                            <button class="btn-collapse dropdown d-flex align-items-center" style="height: 30px; width: 100%;" type="button" data-bs-toggle="collapse" data-bs-target="#col" aria-expanded="false" aria-controls="collection">
+                            <button class="btn-collapse dropdown d-flex align-items-center" style="height: 30px; width: 100%;" type="button" data-bs-toggle="collapse" data-bs-target="#collection_{{$collection->id}}" aria-expanded="false" aria-controls="collection">
                                 <span class="material-symbols-outlined me-2">chevron_right </span>
                                 <span class="fs-6" style="font-weight: 500">{{$collection->name}}</span>
                             </button>
-                            <div class="collapse" id="col">
+                            <div class="collapse" id="collection_{{$collection->id}}">
                                 <div class="container p-0 ">
                                     <button class="btn-collapse dropdown d-flex align-items-center ps-4" style="height: 30px; width: 100%;" type="button" data-bs-toggle="collapse" data-bs-target="#file" aria-expanded="false" aria-controls="file">
                                         <span class="material-symbols-outlined me-2" style="font-size: 22px;">chevron_right </span>
@@ -527,55 +540,54 @@
             <!-- Main Content -->
             <div class="" style="width: 100%;">
                 <!-- Nav Tabs -->
-                <ul class="nav nav-tabs" style="height: 55px;">
+                <ul class="nav nav-tabs flex-row" style="height: 55px;">
+                    @foreach($files->reverse() as $index => $file)
                     <li class="nav-items">
-                        <a class="nav-link active fst-italic" data-bs-toggle="tab" href="#home">home
+                        <a class="nav-link fst-italic" data-bs-toggle="tab"  href="#file_{{$file->id}}">{{$file->name}}
                             <button class="btn d-flex justify-content-center align-items-center p-1">
                                 <span class="material-symbols-outlined">close</span>
                             </button>
                         </a>
                     </li>
-                    <li class="nav-items">
-                        <a class="nav-link fst-italic" data-bs-toggle="tab" href="#profile">profile
-                            <button class="btn d-flex justify-content-center align-items-center p-1">
-                                <span class="material-symbols-outlined">close</span>
-                            </button>
-                        </a>
-                    </li>
-                    <li class="nav-items">
-                        <a class="nav-link fst-italic" data-bs-toggle="tab" href="#contract">contract
-                            <button class="btn d-flex justify-content-center align-items-center p-1">
-                                <span class="material-symbols-outlined">close</span>
-                            </button>
-                        </a>
-                    </li>
-                    <button class="d-flex justify-content-center align-items-center p-2 add-nav-items">
+                    @endforeach
+                    <a style="text-decoration: none" href="{{ route('workspace.add_file',['workspace' => $workspace->id])}}" class="d-flex justify-content-center align-items-center p-2 add-nav-items">
                         <span class="material-symbols-outlined">add</span>
-                    </button>
+                    </a>
                 </ul>
                 <!-- Tabs Content -->
                 <div class="tab-content">
-                    <div class="tab-pane active" id="home">
-                        <div class="row">
-                            <div class="col">
-                                <h3>Home</h3>
+                    @foreach($files->reverse() as $index => $file)
+                    <div class="tab-pane" id="file_{{$file->id}}">
+                        <div class="container-fluid p-3">
+                            <div class="col d-flex flex-row justify-content-between align-items-center p-0 mb-2">
+                                <h5>{{$file->name}}</h5>
+                                <div class="d-flex">
+                                    <div class="d-flex align-items-center justify-content-between me-2" style="width: 110px; height: 30px;">
+                                        <button type="button" class="btn btn-secondary d-flex align-items-center" style="width: 80px; height: 100%; border-radius:5px 0px 0px 5px">
+                                            <i class="fa-regular fa-floppy-disk"></i><label for="" class="ms-1 cursor" style="font-size:14px font-weight:600;">Save</label></button>
+                                        <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" style="width:25px; height: 100%; border-radius:0px 5px 5px 0px" data-bs-toggle="dropdown" aria-expanded="false">
+                                        </button>
+                                        <ul class="dropdown-menu dropdown-menu-end">
+                                          <li><a class="dropdown-item" href="#">Save As .json</a></li>
+                                          <li><a class="dropdown-item" href="#">Save As .docx</a></li>
+                                          <li><hr class="dropdown-divider"></li>
+                                          <li><a class="dropdown-item" href="#">Save to Collection</a></li>
+                                        </ul>
+                                    </div>
+                                    <button type="button" class="btn btn-secondary d-flex align-items-center" style="width: 110px; height:30px; border-radius:5px 0px 0px 5px">
+                                        <i class="fa-regular fa-comment" style="color: #EF5B25;"></i><label for="" class="ms-1 cursor" style="font-size:14px font-weight:600; color: #EF5B25;">Comment</label>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col d-flex">
+                                <input class="form-control me-2" style="border: #F2F2F2 solid 2px; color:#808080;" type="file" id="formFile">
+                                <button type="button" class="btn btn-blue d-flex align-items-center" style="width: 100px; height: 100%;">
+                                    <i class="fa-regular fa-file-lines"></i><label for="" class="ms-1 cursor" style="font-size:14px font-weight:600;">Create</label>
+                                </button>
                             </div>
                         </div>
                     </div>
-                    <div class="tab-pane" id="profile">
-                        <div class="row">
-                            <div class="col">
-                                <h3>profile</h3>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tab-pane" id="contract">
-                        <div class="row">
-                            <div class="col">
-                                <h3>contract</h3>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </section>
