@@ -41,6 +41,8 @@ Route::group(['middleware' => 'auth'],function(){
     Route::resource('workspace',WorkspaceController::class);
     Route::get('/workspace/{workspace}/add-collection', [WorkspaceController::class, 'add_collection'])->name('workspace.add_collection');
     Route::delete('/logout',[AuthController::class,'logout'])->name('logout');
+    Route::get('/workspace/{workspace}/add-file', [WorkspaceController::class, 'add_file'])->name('workspace.add_file');
+    Route::get('/workspace/{id}', [WorkspaceController::class, 'index'])->name('workspace.index');
 });
 
 

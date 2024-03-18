@@ -527,55 +527,31 @@
             <!-- Main Content -->
             <div class="" style="width: 100%;">
                 <!-- Nav Tabs -->
-                <ul class="nav nav-tabs" style="height: 55px;">
+                <ul class="nav nav-tabs flex-row" style="height: 55px;">
+                    @foreach($files->reverse() as $index => $file)
                     <li class="nav-items">
-                        <a class="nav-link active fst-italic" data-bs-toggle="tab" href="#home">home
+                        <a class="nav-link fst-italic" data-bs-toggle="tab"  href="#file_{{$file->id}}">{{$file->name}}
                             <button class="btn d-flex justify-content-center align-items-center p-1">
                                 <span class="material-symbols-outlined">close</span>
                             </button>
                         </a>
                     </li>
-                    <li class="nav-items">
-                        <a class="nav-link fst-italic" data-bs-toggle="tab" href="#profile">profile
-                            <button class="btn d-flex justify-content-center align-items-center p-1">
-                                <span class="material-symbols-outlined">close</span>
-                            </button>
-                        </a>
-                    </li>
-                    <li class="nav-items">
-                        <a class="nav-link fst-italic" data-bs-toggle="tab" href="#contract">contract
-                            <button class="btn d-flex justify-content-center align-items-center p-1">
-                                <span class="material-symbols-outlined">close</span>
-                            </button>
-                        </a>
-                    </li>
-                    <button class="d-flex justify-content-center align-items-center p-2 add-nav-items">
+                    @endforeach
+                    <a style="text-decoration: none" href="{{ route('workspace.add_file',['workspace' => $workspace->id])}}" class="d-flex justify-content-center align-items-center p-2 add-nav-items">
                         <span class="material-symbols-outlined">add</span>
-                    </button>
+                    </a>
                 </ul>
                 <!-- Tabs Content -->
                 <div class="tab-content">
-                    <div class="tab-pane active" id="home">
+                    @foreach($files->reverse() as $index => $file)
+                    <div class="tab-pane" id="file_{{$file->id}}">
                         <div class="row">
                             <div class="col">
-                                <h3>Home</h3>
+                                <h3>{{$file->name}}</h3>
                             </div>
                         </div>
                     </div>
-                    <div class="tab-pane" id="profile">
-                        <div class="row">
-                            <div class="col">
-                                <h3>profile</h3>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tab-pane" id="contract">
-                        <div class="row">
-                            <div class="col">
-                                <h3>contract</h3>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </section>
