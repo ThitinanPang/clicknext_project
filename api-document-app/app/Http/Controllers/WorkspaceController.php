@@ -31,4 +31,23 @@ class WorkspaceController extends Controller
 
         return view('workspace', $data);
     }
+
+    public function add_collection($id)
+    {
+
+        $workspace = Workspace::find($id);
+
+        if (!$workspace) {
+            return redirect()->route('home')->with('error', 'Workspace not found');
+        }
+
+        $collection = new Collection();
+        $collection->name = "New Collection";
+        $collection->user_create = auth()->user()->name;
+        $collection->status = 'active';
+
+        $workspace->collections()->save($collection);
+
+        return redirect()->route('workspace.show', ['id' => $id])->with('success', 'Collection added successfully');
+    }
 }

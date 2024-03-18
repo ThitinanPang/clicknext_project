@@ -11,7 +11,6 @@ use App\Http\Controllers\ResetPasswordController;
 
 
 
-Route::resource('workspace',WorkspaceController::class);
 Route::resource('reset-password',ResetPasswordController::class);
 
 
@@ -39,6 +38,8 @@ Route::group(['middleware' => 'guest'],function(){
 Route::group(['middleware' => 'auth'],function(){
     Route::get('/', [HomepageController::class, 'index'])->name('home.index');
     Route::resource('home',HomepageController::class);
+    Route::resource('workspace',WorkspaceController::class);
+    Route::get('/workspace/{workspace}/add-collection', [WorkspaceController::class, 'add_collection'])->name('workspace.add_collection');
     Route::delete('/logout',[AuthController::class,'logout'])->name('logout');
 });
 

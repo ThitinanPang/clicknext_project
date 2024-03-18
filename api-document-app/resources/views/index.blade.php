@@ -153,23 +153,7 @@
             border:dodgerblue solid 2px;
             transition: all 0.3s;
         }
-        .btn {
-            height: 100%;
-            width: 100%;
-            background: #fff;
-            color: #000;
-            font-weight: 500;
-        }
-        .btn:hover {
-            background: #f2f2f2;
-            color: #000;
-            font-weight: 500;
-        }
-        .btn:focus {
-            background: #f2f2f2;
-            color: #000;
-            font-weight: 500;
-        }
+
         .btn-dropdown{
             height: 100%;
             width: 100%;
@@ -382,7 +366,7 @@
      <!-- Start Sidebar -->
      <aside class="d-flex flex-shrink-0 flex-column primary" style="width:5.625rem; min-height: 100vh; overflow-y: auto;">
         <div class="list-group flex-column mb-auto">
-            <a href="{{ route('home.index') }}" style="height: 65px" class="link-body-emphasis text-decoration-none d-flex justify-content-center align-items-center" data-bs-toggle="dropdown" aria-expanded="false">
+            <a href="{{ route('home.index') }}" style="height: 65px" class="text-decoration-none d-flex justify-content-center align-items-center">
                 <img width="50px" src="https://media.discordapp.net/attachments/994685233087643719/1215261876972429323/circle_logo.png?ex=65fc1bd1&is=65e9a6d1&hm=2ca5c2f0daef63d683772b7d936e3398948ccc82dff64fe57dcca0eedd499900&=&format=webp&quality=lossless" alt="clicknext-logo">
             </a>
             <div class="list-group-items btn-menu">
@@ -411,7 +395,7 @@
         <nav class="ps-2 d-flex navbar navbar-light bg-white sticky-top">
             <div class="dropdown">
                 <input type="checkbox" id="dropdown-nav-toggle" class="dropdown-nav-toggle visually-hidden">
-                <button class="btn btn-white dropdown d-flex align-items-center" style="height: 50px;" onclick="toggleDropdownNav(),toggleCreateWorkspacePane('close')">
+                <button class="btn btn-dropdown btn-white dropdown d-flex align-items-center" style="height: 50px;" onclick="toggleDropdownNav(),toggleCreateWorkspacePane('close')">
                     <span class="material-symbols-outlined">grid_view</span>
                     <span class="fs-5 fw-normal">Workspaces</span>
                     <span id="dropdown-nav-icon" class="material-icons">expand_more</span>
@@ -439,7 +423,7 @@
                                             <li class="d-flex align-items-center mt-1 link-black" style="height: 30px">
                                                 <a class="link-black" style="width: 100%; height:100%" href="{{ route('workspace.show', ['workspace' => $workspace->id]) }}">
                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="me-2" viewBox="0 0 16 16" width="18" height="18"><path d="M10.561 8.073a6.005 6.005 0 0 1 3.432 5.142.75.75 0 1 1-1.498.07 4.5 4.5 0 0 0-8.99 0 .75.75 0 0 1-1.498-.07 6.004 6.004 0 0 1 3.431-5.142 3.999 3.999 0 1 1 5.123 0ZM10.5 5a2.5 2.5 0 1 0-5 0 2.5 2.5 0 0 0 5 0Z"></path></svg>
-                                                    <label label class="fs-6 fw-normal" for="">{{$workspace->name}}</label>
+                                                    <label label class="fs-6 fw-normal cursor" for="">{{$workspace->name}}</label>
                                                 </a>
                                             </li>
                                         </div>
@@ -470,7 +454,7 @@
                 </form>
             </div>
             <div class="dropdown pe-5 fs-5">
-                <button class="btn btn-white dropdown d-flex align-items-center" onclick="toggleDropdownProfile()" style="height: 50px;" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                <button class="btn btn-dropdown btn-white dropdown d-flex align-items-center" onclick="toggleDropdownProfile()" style="height: 50px;" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                     <img src="https://media.discordapp.net/attachments/994685233087643719/1215271120127791114/77ed449a829d201a7940b0f98d49ca5a3cf43dd9.jpg?ex=65fc246d&is=65e9af6d&hm=cc53b20e7bac20faa1f57f479c85b3a5c19f166a5ece6b0da943736fc79cb017&=&format=webp" alt="" width="40" height="40" class="rounded-circle me-2">
                     <span class="fs-5 fw-normal">{{Auth::user()->name}}</span>
                     <span id="dropdown-profile-icon" class="material-icons">expand_more</span>
