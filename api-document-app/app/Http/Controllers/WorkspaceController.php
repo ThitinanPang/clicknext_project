@@ -44,10 +44,11 @@ class WorkspaceController extends Controller
         $collection = new Collection();
         $collection->name = "New Collection";
         $collection->user_create = auth()->user()->name;
+        $collection->workspace_id = $workspace->id;
         $collection->status = 'active';
 
         $workspace->collections()->save($collection);
 
-        return redirect()->route('workspace.show', ['id' => $id])->with('success', 'Collection added successfully');
+        return redirect()->route('workspace.show', ['workspace' => $id])->with('success', 'Collection added successfully');
     }
 }

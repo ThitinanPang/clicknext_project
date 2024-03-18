@@ -16,10 +16,6 @@ return new class extends Migration
             $table->string('name');
             $table->string('user_create');
             $table->boolean('favorite');
-            $table->unsignedBigInteger('collections_list')->nullable();
-            $table->unsignedBigInteger('team')->nullable();
-            $table->foreign('collections_list')->references('id')->on('collections');
-            $table->foreign('team')->references('id')->on('users');
             $table->timestamps();
         });
     }

@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('name');
             $table->string('path');
             $table->string('user_create');
-            $table->unsignedBigInteger('methods_list')->nullable();
-            $table->foreign('methods_list')->references('id')->on('methods');
+            $table->unsignedBigInteger('collection_id')->nullable();
+            $table->foreign('collection_id')->references('id')->on('collections');
             $table->timestamps();
         });
     }

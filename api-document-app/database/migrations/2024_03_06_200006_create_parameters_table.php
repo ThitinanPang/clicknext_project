@@ -11,12 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('bodies', function (Blueprint $table) {
+        Schema::create('parameters', function (Blueprint $table) {
             $table->id();
             $table->string('key');
+            $table->char('param_type');
             $table->string('data_type');
             $table->boolean('required');
             $table->string('description');
+            $table->unsignedBigInteger('method_id')->nullable();
+            $table->foreign('method_id')->references('id')->on('methods');
         });
     }
 
@@ -25,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('bodies');
+        Schema::dropIfExists('parameters');
     }
 };

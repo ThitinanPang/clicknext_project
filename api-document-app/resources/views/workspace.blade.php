@@ -473,7 +473,7 @@
         </div>
     </nav>
     @if ($message = Session::get('success'))
-    <div class="alert alert-success">Workspace has been created</div>
+    <div class="alert alert-success">{{$message}}</div>
     @endif
         <!-- Start Content -->
         <section class="content d-flex flex-row" style="min-height: 1200px; overflow-y: auto;">
@@ -496,13 +496,14 @@
                         </div>
                     </div>
                     <!-- Collections List -->
+                    @foreach ($selectedWorkspace->collections as $collection)
                     <div class="row">
                         <div class="col p-0">
-                            <button class="btn-collapse dropdown d-flex align-items-center" style="height: 30px; width: 100%;" type="button" data-bs-toggle="collapse" data-bs-target="#collection" aria-expanded="false" aria-controls="collection">
+                            <button class="btn-collapse dropdown d-flex align-items-center" style="height: 30px; width: 100%;" type="button" data-bs-toggle="collapse" data-bs-target="#col" aria-expanded="false" aria-controls="collection">
                                 <span class="material-symbols-outlined me-2">chevron_right </span>
-                                <span class="fs-6" style="font-weight: 500">New Collection</span>
+                                <span class="fs-6" style="font-weight: 500">{{$collection->name}}</span>
                             </button>
-                            <div class="collapse" id="collection">
+                            <div class="collapse" id="col">
                                 <div class="container p-0 ">
                                     <button class="btn-collapse dropdown d-flex align-items-center ps-4" style="height: 30px; width: 100%;" type="button" data-bs-toggle="collapse" data-bs-target="#file" aria-expanded="false" aria-controls="file">
                                         <span class="material-symbols-outlined me-2" style="font-size: 22px;">chevron_right </span>
@@ -518,6 +519,8 @@
                             </div>
                         </div>
                     </div>
+                    @endforeach
+
                 </div>
             </div>
 

@@ -11,10 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('responses', function (Blueprint $table) {
+        Schema::create('headers', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('response_code')->nullable();
-            $table->foreign('response_code')->references('id')->on('response_bodies');
+            $table->string('key');
+            $table->boolean('required');
+            $table->string('description');
+            $table->unsignedBigInteger('method_id')->nullable();
+            $table->foreign('method_id')->references('id')->on('methods');
         });
     }
 
@@ -23,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('responses');
+        Schema::dropIfExists('headers');
     }
 };

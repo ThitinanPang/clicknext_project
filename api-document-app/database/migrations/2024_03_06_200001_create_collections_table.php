@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('user_create');
-            $table->unsignedBigInteger('files_list')->nullable();
-            $table->foreign('files_list')->references('id')->on('files');
+            $table->unsignedBigInteger('workspace_id')->nullable();
+            $table->foreign('workspace_id')->references('id')->on('workspaces');
             $table->string('status');
             $table->timestamps();
         });

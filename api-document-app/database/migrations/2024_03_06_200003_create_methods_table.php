@@ -11,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('headers', function (Blueprint $table) {
+        Schema::create('methods', function (Blueprint $table) {
             $table->id();
-            $table->string('key');
-            $table->boolean('required');
-            $table->string('description');
+            $table->string('type');
+            $table->string('path');
+            $table->unsignedBigInteger('file_id')->nullable();
+            $table->foreign('file_id')->references('id')->on('files');
         });
     }
 
@@ -24,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('headers');
+        Schema::dropIfExists('methods');
     }
 };
