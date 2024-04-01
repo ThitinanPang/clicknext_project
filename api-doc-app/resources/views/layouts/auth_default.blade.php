@@ -141,7 +141,7 @@
             }
             .textfield {
                 width: auto;
-                height: 30px;
+                height: 45px;
                 border: 2px solid #F2F2F2;
                 border-radius: 5px;
                 font-size: 16px;
@@ -150,6 +150,7 @@
             .textfield:focus {
                 outline: 0;
                 border:dodgerblue solid 2px;
+                box-shadow: 0px 0px 0px 3px rgba(30, 143, 255, 0.3);
                 transition: all 0.3s;
             }
             .btn {

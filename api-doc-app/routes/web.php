@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MainController;
+use App\Http\Controllers\WorkspaceController;
+
 
 Route::group(['middleware' => 'guest'],function(){
 
@@ -18,16 +20,16 @@ Route::group(['middleware' => 'guest'],function(){
 
 
 Route::group(['middleware' => 'auth'],function(){
+    Route::get('/', [MainController::class, 'index'])->name('home.index');
     Route::get('/home', [MainController::class, 'index'])->name('home.index');
-    Route::get('workspace/create'[])
+
+    Route::get('/workspace/create', [WorkspaceController::class, 'create'])->name('workspace.create');
+    Route::post('/workspace/create', [WorkspaceController::class, 'store'])->name('workspace.store');
+
 
     Route::get('/workspace/{workspace}/add-collection', [WorkspaceController::class, 'add_collection'])->name('workspace.add_collection');
     Route::get('/workspace/{workspace}/add-file', [WorkspaceController::class, 'add_file'])->name('workspace.add_file');
     Route::get('/workspace/{workspace}', [WorkspaceController::class, 'index'])->name('workspace.index');
 
     Route::delete('/logout',[AuthController::class,'logout'])->name('logout');
-});
-
-Route::get('/', function () {
-    return view('auth/signin');
 });

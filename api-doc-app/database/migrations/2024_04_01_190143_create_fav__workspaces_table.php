@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('methods', function (Blueprint $table) {
+        Schema::create('fav__workspaces', function (Blueprint $table) {
             $table->id();
-            $table->string('type');
-            $table->string('path');
-            $table->unsignedBigInteger('collection_id')->nullable();
-            $table->foreign('collection_id')->references('id')->on('collections');
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->unsignedBigInteger('workspace_id')->nullable();
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('workspace_id')->references('id')->on('workspaces');
             $table->timestamps();
         });
     }
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('methods');
+        Schema::dropIfExists('fav__workspaces');
     }
 };

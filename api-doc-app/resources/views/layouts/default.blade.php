@@ -143,7 +143,7 @@
         }
         .textfield {
             width: auto;
-            height: 30px;
+            height: 45px;
             border: 2px solid #F2F2F2;
             border-radius: 5px;
             font-size: 16px;
@@ -152,6 +152,7 @@
         .textfield:focus {
             outline: 0;
             border:dodgerblue solid 2px;
+            box-shadow: 0px 0px 0px 3px rgba(30, 143, 255, 0.3);
             transition: all 0.3s;
         }
         .btn-dropdown{
@@ -206,6 +207,24 @@
             color: #fff;
             font-weight: 500;
             border: #EF5B25 solid 0px;
+        }
+        .btn-outline {
+            background: #ffffff;
+            color: #000000;
+            font-weight: 500;
+            border: #f2f2f2 solid 2px;
+        }
+        .btn-outline:hover {
+            background: #eeeeee;
+        }
+        .btn-outline:focus {
+            border:dodgerblue solid 2px;
+            box-shadow: 0px 0px 0px 3px rgba(30, 143, 255, 0.3);
+            transition: all 0.3s;
+        }
+        input[type="radio"]:checked+.btn.btn-outline {
+            border: dodgerblue solid 2px;
+            transition: all 0.3s;
         }
         .link-black {
             color: #000000;
@@ -360,8 +379,10 @@
             transition: all 0.3s;
             cursor: pointer;
         }
-
-
+        .card-body{
+            background-color:#fff;
+            border: 2px solid #f2f2f2
+        }
         /* New css */
         .btn-blue {
             color: #fff;
@@ -400,14 +421,14 @@
             <!-- Dropdown Menu -->
             <div class="dropdown-content flex-column container pane" style=" width: 420px; height: 230px;">
                 <div class="row align-items-start p-2">
-                    <div class="col-7 d-flex align-items-center p-1" style="height: 40px;">
+                    <div class="col-7 d-flex align-items-center p-1">
                         <div class="input-group">
-                            <i class="fa fa-search" style="font-size: 14px; margin-top: 2px;"></i>
-                            <input class="textfield" style="padding-left: 30px; width: 100%; border-radius: 5px; font-size: 14px;" type="search" name="" id=""  placeholder="Search workspaces">
+                            <i class="fa fa-search" style="font-size: 14px; margin-top: 5px;"></i>
+                            <input class="textfield" style="padding-left: 30px; width: 100%; border-radius: 5px; font-size: 14px; height: 35px;" type="search" name="" id=""  placeholder="Search workspaces">
                         </div>
                     </div>
                     <div class="col-5 d-flex align-items-center p-1" style="height: 40px;">
-                        <a class="m-auto rounded-1 w-100 btn btn-secondary pt-1" href="">Create Workspace</a>
+                        <a class="m-auto rounded-1 w-100 btn btn-secondary pt-1" href="{{route('workspace.create')}}">Create Workspace</a>
                     </div>
                 </div>
                 <div class="row">
@@ -430,7 +451,7 @@
                     </ul>
                 </div>
                 <div class="row align-items-end mt-auto" style="border-top: #F2F2F2 solid 2px;">
-                    <a href="" class="link-grey">View all workspaces <i style="font-size: 12px;" class="fa-solid fa-arrow-right"></i></a>
+                    <a href="" class="link-grey">View all workspaces <i style="font-size: 12px;" class="ps-2 fa-solid fa-arrow-right"></i></a>
                 </div>
             </div>
 

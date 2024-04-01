@@ -11,4 +11,8 @@ class MainController extends Controller
         $data['workspaces'] = Workspace::orderBy('id','desc')->paginate(5);
         return view('home', $data);
     }
+
+
 }
+
+

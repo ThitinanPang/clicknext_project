@@ -14,8 +14,9 @@ return new class extends Migration
         Schema::create('workspaces', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('user_create');
-            $table->boolean('favorite');
+            $table->unsignedBigInteger('user_create')->nullable();
+            $table->foreign('user_create')->references('id')->on('users');
+            $table->string('access');
             $table->timestamps();
         });
     }

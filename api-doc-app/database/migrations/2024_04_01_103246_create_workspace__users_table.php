@@ -13,8 +13,6 @@ return new class extends Migration
     {
         Schema::create('workspace__users', function (Blueprint $table) {
             $table->id();
-            $table->string('permission');
-            $table->string('data_type');
             $table->unsignedBigInteger('user_id')->nullable();
             $table->unsignedBigInteger('workspace_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users');

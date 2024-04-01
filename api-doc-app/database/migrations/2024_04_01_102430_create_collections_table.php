@@ -20,6 +20,7 @@ return new class extends Migration
             $table->foreign('workspace_id')->references('id')->on('workspaces');
             $table->string('status');
             $table->timestamps();
+            $table->timestamp('deleted_at')->nullable();
         });
     }
 
