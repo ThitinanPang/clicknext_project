@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('collections', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('path');
+            $table->string('path')->nullable();
             $table->string('user_create');
             $table->unsignedBigInteger('workspace_id')->nullable();
             $table->foreign('workspace_id')->references('id')->on('workspaces');

@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('key');
             $table->string('data_type');
             $table->boolean('required');
-            $table->string('description');
+            $table->longText('description');
             $table->unsignedBigInteger('method_id')->nullable();
             $table->foreign('method_id')->references('id')->on('methods');
         });

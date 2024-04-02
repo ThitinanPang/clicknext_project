@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Collection extends Model
 {
     use HasFactory;
+
+    public function workspace()
+    {
+        return $this->belongsTo(Workspace::class);
+    }
 }

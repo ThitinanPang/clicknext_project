@@ -16,7 +16,7 @@
                         </div>
                         <div class="col-3 d-flex align-items-center" style="height:100%">
                             <img src="https://media.discordapp.net/attachments/994685233087643719/1215271120127791114/77ed449a829d201a7940b0f98d49ca5a3cf43dd9.jpg?ex=65fc246d&is=65e9af6d&hm=cc53b20e7bac20faa1f57f479c85b3a5c19f166a5ece6b0da943736fc79cb017&=&format=webp" alt="" width="32" height="32" class="rounded-circle me-2">
-                            <label class="fs-6 fw-normal mt-1 ms-2 cursor" for="">{{$workspace->user_create}}</label>
+                            <label class="fs-6 fw-normal mt-1 ms-2 cursor" for="">{{$workspace->userCreate->name}}</label>
                         </div>
                     </a>
                 </li>
@@ -37,7 +37,7 @@
                         </div>
                         <div class="col-3 d-flex align-items-center" style="height:100%">
                             <img src="https://media.discordapp.net/attachments/994685233087643719/1215271120127791114/77ed449a829d201a7940b0f98d49ca5a3cf43dd9.jpg?ex=65fc246d&is=65e9af6d&hm=cc53b20e7bac20faa1f57f479c85b3a5c19f166a5ece6b0da943736fc79cb017&=&format=webp" alt="" width="32" height="32" class="rounded-circle me-2">
-                            <label class="fs-6 fw-normal mt-1 ms-2" for="">{{$workspace->user_create}}</label>
+                            <label class="fs-6 fw-normal mt-1 ms-2" for="">{{$workspace->userCreate->name}}</label>
                         </div>
                     </a>
                 </li>

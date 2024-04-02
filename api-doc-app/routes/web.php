@@ -26,10 +26,11 @@ Route::group(['middleware' => 'auth'],function(){
     Route::get('/workspace/create', [WorkspaceController::class, 'create'])->name('workspace.create');
     Route::post('/workspace/create', [WorkspaceController::class, 'store'])->name('workspace.store');
 
-
-    Route::get('/workspace/{workspace}/add-collection', [WorkspaceController::class, 'add_collection'])->name('workspace.add_collection');
-    Route::get('/workspace/{workspace}/add-file', [WorkspaceController::class, 'add_file'])->name('workspace.add_file');
     Route::get('/workspace/{workspace}', [WorkspaceController::class, 'index'])->name('workspace.index');
+    Route::get('/workspace/{workspace}/add-collection', [WorkspaceController::class, 'addCollection'])->name('workspace.addCollection');
+
+
+    Route::get('/workspace/{workspace}/add-file', [WorkspaceController::class, 'add_file'])->name('workspace.add_file');
 
     Route::delete('/logout',[AuthController::class,'logout'])->name('logout');
 });
