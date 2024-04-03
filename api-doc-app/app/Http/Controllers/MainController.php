@@ -8,7 +8,7 @@ use App\Models\Workspace;
 class MainController extends Controller
 {
     public function index() {
-        $data['workspaces'] = Workspace::orderBy('id','desc')->paginate(5);
+        $data['workspaces'] = Workspace::get()->all();
         return view('home', $data);
     }
 

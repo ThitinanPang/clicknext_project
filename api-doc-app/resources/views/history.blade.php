@@ -1,6 +1,6 @@
 @extends('layouts.default')
 
-@section('title','Workspace')
+@section('title','History')
 
 @section('sidebar')
 <a href="{{route('workspace.collections',['workspace' => $selectedWorkspace->id])}}" class="list-group-items hover-white btn-menu @if(request()->routeIs('workspace.collections')) focus @endif" style="text-decoration: none;">
@@ -18,7 +18,7 @@
 @endsection
 
 @section('content')
-Main
+History
 @endsection
 
 @section('js')

@@ -6,18 +6,19 @@ use Illuminate\Http\Request;
 use App\Models\Workspace;
 use App\Models\Collection;
 use App\Models\User;
+use Session;
 
 
 class WorkspaceController extends Controller
 {
     public function index($id){
-        $data['workspaces'] = Workspace::orderBy('id','desc')->paginate(5);
+        $data['workspaces'] = Workspace::get()->all();
         $data['selectedWorkspace'] = Workspace::find($id);
-        $data['collections'] = Collection::orderBy('id','desc')->paginate(5);
 
         if (!$data['selectedWorkspace']) {
             return redirect()->route('home.index')->with('error', 'Workspace not found');
         }
+        session(['selected_workspace_id' => $id]);
 
         return view('workspace', $data);
     }
@@ -48,17 +49,77 @@ class WorkspaceController extends Controller
         return redirect()->route('home.index')->with('success','Workspace has been created succesfully');
     }
 
-    public function addCollection($id){
-        $user = auth()->user() ;
-        $collection = new Collection;
-        $collection->name = 'New Collection';
-        $collection->status = 'unsave';
+    public function collections(Request $request) {
+        $selectedWorkspaceId = $request->session()->get('selected_workspace_id');
+        $selectedWorkspace = Workspace::find($selectedWorkspaceId);
 
-        if($user) {
-            $collection->user_create = $user->id;
+        if (!$selectedWorkspace) {
+            return redirect()->route('home.index')->with('error', 'Workspace not found');
         }
-        $collections = [$collection];
-        
-        return redirect()->route('workspace.index', $id);
-     }
+
+        $data = $request->session()->all();
+        $data['workspaces'] = Workspace::get()->all();
+        $data['selectedWorkspace'] = $selectedWorkspace;
+
+        return view('collection', $data);
+    }
+
+    public function history(Request $request) {
+        $selectedWorkspaceId = $request->session()->get('selected_workspace_id');
+        $selectedWorkspace = Workspace::find($selectedWorkspaceId);
+
+        if (!$selectedWorkspace) {
+            return redirect()->route('home.index')->with('error', 'Workspace not found');
+        }
+
+        $data = $request->session()->all();
+        $data['workspaces'] = Workspace::get()->all();
+        $data['selectedWorkspace'] = $selectedWorkspace;
+
+        return view('history', $data);
+    }
+
+    public function trash(Request $request) {
+        $selectedWorkspaceId = $request->session()->get('selected_workspace_id');
+        $selectedWorkspace = Workspace::find($selectedWorkspaceId);
+
+        if (!$selectedWorkspace) {
+            return redirect()->route('home.index')->with('error', 'Workspace not found');
+        }
+
+        $data = $request->session()->all();
+        $data['workspaces'] = Workspace::get()->all();
+        $data['selectedWorkspace'] = $selectedWorkspace;
+
+        return view('trash', $data);
+    }
+
+
+
+    public function addToCollectionTabs(Request $request, $id) {
+        if ($request->session()->has('collection_tabs')) {
+            $collection_tabs = $request->session()->get('collection_tabs');
+        } else {
+            $collection_tabs = [];
+        }
+        $collection = Collection::find($id);
+        $collection_tabs[] = $collection;
+        $request->session()->put('collection_tabs', $collection_tabs);
+
+        return redirect()->back();
+    }
+
+    public function deleteFromCollectionTabs(Request $request,$id) {
+        if ($request->session()->has('collection_tabs')) {
+            $collection_tabs = $request->session()->get('collection_tabs');
+            foreach ($collection_tabs as $index => $collection) {
+                if ($collection->id == $id) {
+                    unset($collection_tabs[$index]);
+                    break;
+                }
+            }
+            $request->session()->put('collection_tabs', $collection_tabs);
+        }
+        return redirect()->back();
+    }
 }

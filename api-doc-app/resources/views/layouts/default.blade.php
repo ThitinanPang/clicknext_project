@@ -33,6 +33,12 @@
         .debug {
             border: 1px solid red;
         }
+        .hover-white:hover {
+            color: white;
+        }
+        .hover-black:hover{
+            color: #000;
+        }
         .btn-menu {
             cursor: pointer;
             color: #fff;
@@ -51,7 +57,11 @@
             background-color: #ea9c80;
             transition: all 0.3s;
         }
-        .btn-menu:focus{
+        .btn-menu:hover{
+            background-color: #ea9c80;
+            transition: all 0.3s;
+        }
+        .focus{
             background-color: #ea9c80;
         }
         .dropdown{
