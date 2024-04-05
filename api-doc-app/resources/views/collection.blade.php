@@ -45,15 +45,17 @@
             @foreach ($selectedWorkspace->collections as $collection)
             <div class="row">
                 <div class="col p-0">
-                    <button class="btn-collapse dropdown hover-black d-flex align-items-center" style="height: 30px; width: 100%; text-decoration:none;" href="{{ route('add.collection.tabs', ['collection' => $collection->id]) }}" type="button" data-bs-toggle="collapse" data-bs-target="#collection_{{$collection->id}}" aria-expanded="false" aria-controls="collection_{{$collection->id}}">
+                    <button class="btn-collapse dropdown hover-black d-flex align-items-center" style="height: 30px; width: 100%; text-decoration:none;" href="" type="button" data-bs-toggle="collapse" data-bs-target="#collection_{{$collection->id}}" aria-expanded="false" aria-controls="collection_{{$collection->id}}">
                         <span class="material-symbols-outlined ms-1 me-2">chevron_right</span>
                         <span class="fs-6" style="font-weight: 500">{{$collection->name}}</span>
                     </button>
                     <div class="collapse" id="collection_{{$collection->id}}">
                         {{-- Method List --}}
+                        @foreach ($collection->methods as $method)
                         <ul class="navbar-nav">
-                            <li><a href=""><label class="me-2" style="font-size: 14px;  font-weight: 500;" for="">GET</label><label for="" style="font-size: 14px; color: #000;">api/user/4</label></a></li>
+                            <li><a href="{{route('add.collection.tabs',['collection' => $collection->id])}}"><label class="me-2" style="font-size: 14px;  font-weight: 500;" for="">{{$method->type}}</label><label for="" style="font-size: 14px; color: #000;">{{$method->path}}</label></a></li>
                         </ul>
+                        @endforeach
                     </div>
                 </div>
             </div>

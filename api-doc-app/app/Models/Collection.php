@@ -13,4 +13,8 @@ class Collection extends Model
     {
         return $this->belongsTo(Workspace::class);
     }
+    public function methods()
+    {
+        return $this->hasMany(Method::class);
+    }
 }

@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Method extends Model
 {
     use HasFactory;
+    public function collection()
+    {
+        return $this->belongsTo(collection::class);
+    }
 }
